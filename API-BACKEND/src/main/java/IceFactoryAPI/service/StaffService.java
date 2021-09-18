@@ -1,8 +1,8 @@
-package IceFactory.service;
+package IceFactoryAPI.service;
 
 
-import IceFactory.model.Staff;
-import IceFactory.repository.StaffRepository;
+import IceFactoryAPI.model.Staff;
+import IceFactoryAPI.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

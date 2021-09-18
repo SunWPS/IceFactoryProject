@@ -1,4 +1,4 @@
-package IceFactory.model;
+package IceFactoryAPI.model;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;

@@ -1,7 +1,7 @@
-package IceFactory.repository;
+package IceFactoryAPI.repository;
 
 
-import IceFactory.model.Staff;
+import IceFactoryAPI.model.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StaffRepository extends

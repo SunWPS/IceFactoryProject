@@ -1,7 +1,7 @@
-package IceFactory.controller;
+package IceFactoryAPI.controller;
 
-import IceFactory.model.Staff;
-import IceFactory.service.StaffService;
+import IceFactoryAPI.model.Staff;
+import IceFactoryAPI.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

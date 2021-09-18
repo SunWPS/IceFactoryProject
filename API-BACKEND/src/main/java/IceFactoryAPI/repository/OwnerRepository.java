@@ -1,6 +1,6 @@
-package IceFactory.repository;
+package IceFactoryAPI.repository;
 
-import IceFactory.model.Owner;
+import IceFactoryAPI.model.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

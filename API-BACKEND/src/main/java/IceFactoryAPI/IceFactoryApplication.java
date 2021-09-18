@@ -1,7 +1,5 @@
-package IceFactory;
+package IceFactoryAPI;
 
-import IceFactory.model.Owner;
-import IceFactory.service.OwnerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

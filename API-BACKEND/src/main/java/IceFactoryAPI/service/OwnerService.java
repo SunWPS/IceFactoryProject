@@ -1,7 +1,7 @@
-package IceFactory.service;
+package IceFactoryAPI.service;
 
-import IceFactory.model.Owner;
-import IceFactory.repository.OwnerRepository;
+import IceFactoryAPI.model.Owner;
+import IceFactoryAPI.repository.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

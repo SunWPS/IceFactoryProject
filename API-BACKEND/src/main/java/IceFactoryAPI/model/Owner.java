@@ -1,12 +1,7 @@
-package IceFactory.model;
+package IceFactoryAPI.model;
 
-
-import IceFactory.service.OwnerService;
-import IceFactory.service.StaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;

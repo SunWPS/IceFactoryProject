@@ -1,4 +1,4 @@
-package IceFactory.model;
+package IceFactoryAPI.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

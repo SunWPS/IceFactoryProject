@@ -1,8 +1,8 @@
-package IceFactory.controller;
+package IceFactoryAPI.controller;
 
 
-import IceFactory.model.Owner;
-import IceFactory.service.OwnerService;
+import IceFactoryAPI.model.Owner;
+import IceFactoryAPI.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
