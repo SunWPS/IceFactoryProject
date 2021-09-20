@@ -1,0 +1,100 @@
+.textwithBlueBorder{
+    -fx-border-color:  linear-gradient(to bottom right, #52E5E7, #130CB7);;
+    -fx-background-radius: 20 20 20 20;
+    -fx-border-radius: 20 20 20 20;
+    -fx-border-width: 1.5px
+}
+
+.textAreawithBlueBorder{
+    -fx-border-color:  linear-gradient(to bottom right, #52E5E7, #130CB7);;
+    -fx-border-width: 1.5px
+}
+
+.blueButton{
+    -fx-background-color: #0a2253;
+    -fx-background-radius: 20 20 20 20;
+}
+.blueButton:hover
+{
+    -fx-background-color : #234996;
+    -fx-background-radius :  20 20 20 20;
+}
+.blueButton:pressed
+{
+    -fx-background-color : #5c6984;
+    -fx-background-radius :  20 20 20 20;
+}
+
+.normalBtn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color:  linear-gradient(to bottom right, #52E5E7, #130CB7);
+    -fx-border-radius: 20 20 20 20;
+    -fx-border-width: 1.5px;
+}
+.normalBtn:hover{
+    -fx-background-color: #A1E3FC;
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color:  linear-gradient(to bottom right, #52E5E7, #130CB7);
+    -fx-border-radius: 20 20 20 20;
+    -fx-border-width: 1.5px;
+}
+.normalBtn:pressed{
+    -fx-background-color: #5c6984;
+    -fx-background-radius :  20 20 20 20;
+    -fx-border-color:  linear-gradient(to bottom right, #52E5E7, #130CB7);
+    -fx-border-radius: 20 20 20 20;
+    -fx-border-width: 1.5px;
+}
+
+.paneShadow{
+    -fx-background-color: #DCDCDC;
+    -fx-background-radius :  20 20 20 20;
+}
+
+.transparentBtn{
+    -fx-background-color: rgba(255, 0, 0, 0);
+}
+.transparentBtn:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-radius :  50 50 50 50;
+}
+
+.redBtn{
+    -fx-background-color: linear-gradient(to bottom right, #ED213A, #93291E);
+    -fx-background-radius :  20 20 20 20;
+}
+.redBtn:hover{
+    -fx-background-color: linear-gradient(to bottom right, #931625, #3C100C);
+    -fx-background-radius :  20 20 20 20;
+}
+.redBtn:pressed{
+    -fx-background-color : #5c6984;
+    -fx-background-radius :  20 20 20 20;
+}
+
+.greenBtn{
+    -fx-background-color: linear-gradient(to bottom right, #38ef7d, #11998e);
+    -fx-background-radius :  20 20 20 20;
+}
+.greenBtn: hover{
+    -fx-background-color: linear-gradient(to bottom right, #09544E, #23904C);
+    -fx-background-radius :  20 20 20 20;
+}
+.greenBtn:pressed{
+    -fx-background-color : #5c6984;
+    -fx-background-radius :  20 20 20 20;
+}
+
+.sunSetBtn{
+    -fx-background-color: linear-gradient(to bottom right, #ee0979, #ff6a00);
+    -fx-background-radius :  20 20 20 20;
+}
+.sunSetBtn: hover{
+    -fx-background-color: linear-gradient(to bottom right, #931625, #3C100C);
+    -fx-background-radius :  20 20 20 20;
+}
+.sunSetBtn:pressed{
+    -fx-background-color : #5c6984;
+    -fx-background-radius :  20 20 20 20;
+}
