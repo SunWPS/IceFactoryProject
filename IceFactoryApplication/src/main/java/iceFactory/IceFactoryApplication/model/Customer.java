@@ -1,21 +1,20 @@
 package iceFactory.IceFactoryApplication.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class Customer {
+    enum CustomerType{
+        Delivery,Pickup
+    }
     private UUID customerId;
     private String fName;
     private String lName;
-    private String Address;
+    private String address;
     private String phoneNumber;
-
-    public Customer( String fName, String lName, String address, String phoneNumber) {
-
-        this.fName = fName;
-        this.lName = lName;
-        Address = address;
-        this.phoneNumber = phoneNumber;
-    }
+    private String type;
+    private Set<CustomerOrder> customerOrders = new HashSet<>();
 
     public UUID getCustomerId() {
         return customerId;
@@ -42,11 +41,11 @@ public class Customer {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -55,5 +54,29 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDelivery(){
+        type = CustomerType.Delivery.toString();
+    }
+
+    public void setPickup(){
+        type = CustomerType.Pickup.toString();
+    }
+
+    public Set<CustomerOrder> getCustomerOrders() {
+        return customerOrders;
+    }
+
+    public void setCustomerOrders(Set<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
     }
 }
