@@ -2,6 +2,8 @@ package iceFactory.IceFactoryApplication.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Staff extends Account{
     private String firstName;
@@ -10,15 +12,18 @@ public class Staff extends Account{
     private String phoneNumber;
     private String address;
     private Owner owner;
-
+    private Set<CustomerOrder> customerOrders = new HashSet<>();
+    public Owner getOwner() {
+        return owner;
+    }
 
     //add order
     //editOrder
 
 
-    public Owner getOwner() {
-        return owner;
-    }
+
+
+
 
     public void setOwner(Owner owner) {
         this.owner = owner;
@@ -82,5 +87,13 @@ public class Staff extends Account{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<CustomerOrder> getOrders() {
+        return customerOrders;
+    }
+
+    public void setOrders(Set<CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
     }
 }

@@ -6,12 +6,9 @@ import java.util.Set;
 
 public class Owner extends Account{
 
-
     //editStock
     //edit
     private Set<Staff> staffs = new HashSet<>();
-
-
     public Owner changePassword(String oldPass, String newPass){
         if(getPassword().equals(oldPass)){
             this.setPassword(newPass);
@@ -35,19 +32,19 @@ public class Owner extends Account{
         else throw new IllegalArgumentException("Already have this account!!");
     }
 
-    public Staff deleteStaff(HashMap<String,Staff> staffMap, String staffUsername){
-        return(staffMap.remove(staffUsername));
-    }
+//    public Staff deleteStaff(HashMap<String,Staff> staffMap, String staffUsername){
+//        return(staffMap.remove(staffUsername));
+//    }
 
     public Staff editStaff (HashMap<String,Staff> staffMap, Staff staff){
         Staff editStaff = staffMap.get(staff.getUsername());
         if(staff.getFirstName()!=null)
             editStaff.setFirstName(staff.getFirstName());
-        else if(staff.getLastName()!=null)
+        if(staff.getLastName()!=null)
             editStaff.setLastName(staff.getLastName());
-        else if(staff.getPhoneNumber()!=null)
+        if(staff.getPhoneNumber()!=null)
             editStaff.setPhoneNumber(staff.getPhoneNumber());
-        else if(staff.getAddress()!=null)
+        if(staff.getAddress()!=null)
             editStaff.setAddress(staff.getAddress());
         else throw new IllegalArgumentException("Argument is null!!");
 
