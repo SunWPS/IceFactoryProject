@@ -1,6 +1,9 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
 import iceFactory.IceFactoryApplication.controllers.shareControllers.ChangePasswordController;
+import iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController.AddOrderController;
+import iceFactory.IceFactoryApplication.controllers.staffControllers.deliveredController.DeliveredController;
+import iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController.PrepareOrderController;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
@@ -51,6 +54,61 @@ public class StaffPageController {
         ChangePasswordController changePasswordController = loader.getController();
         changePasswordController.setService(service);
         changePasswordController.setAccountManage(accountManage);
+        stage.show();
+    }
+
+    @FXML public void handleAddOrderBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/addOrder/add_order.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        AddOrderController addOrderController = loader.getController();
+        addOrderController.setService(service);
+        addOrderController.setAccountManage(accountManage);
+        stage.show();
+    }
+
+    @FXML public void handlePrepareBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/prepare/prepare_order.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        PrepareOrderController prepareOrderController = loader.getController();
+        prepareOrderController.setService(service);
+        prepareOrderController.setAccountManage(accountManage);
+        stage.show();
+    }
+
+    @FXML public void handleCreateBillBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/create_bill.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        CreateBillController createBillController = loader.getController();
+        createBillController.setService(service);
+        createBillController.setAccountManage(accountManage);
+        stage.show();
+    }
+
+    @FXML public void handleDeliveredBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/delivered/delivered.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        DeliveredController deliveredController = loader.getController();
+        deliveredController.setService(service);
+        deliveredController.setAccountManage(accountManage);
+        stage.show();
+    }
+
+    @FXML public void handleCustomerListBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/customer_page.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        CustomerPage customerPage = loader.getController();
+        customerPage.setService(service);
+        customerPage.setAccountManage(accountManage);
         stage.show();
     }
 

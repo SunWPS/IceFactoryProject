@@ -29,17 +29,17 @@ public class Staff extends Account{
         dateTime = LocalDateTime.now().format(formatter);
     }
 
-//    public Staff logIn(String username,String password){
-//        try {
-//            if(entryCheck(username,password)){
-//                checkIn();
-//                return this;}
-//        }
-//        catch (IllegalArgumentException e){
-//            throw new IllegalArgumentException(e.getMessage());
-//        }
-//        return null;
-//        }
+    public Staff logIn(String username,String password){
+        try {
+            if(entryCheck(username,password)){
+                checkIn();
+                return this;}
+        }
+        catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+        return null;
+        }
 
 
 

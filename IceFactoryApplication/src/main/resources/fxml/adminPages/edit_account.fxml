@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="599.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.adminControllers.EditAccountController">
+    <children>
+        <ImageView pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../ImageAndIcon/adminAndStaffPageImage/Background/editAccountBg.jpg" />
+            </image>
+        </ImageView>
+        <Label layoutX="100.0" layoutY="189.0" text="Username :" textFill="#18076f">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="146.0" layoutY="248.0" text="ชื่อจริง : " textFill="#18076f">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="128.0" layoutY="312.0" text="นามสกุล : " textFill="#18076f">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="128.0" layoutY="378.0" text="เบอร์โทร : " textFill="#18076f">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label layoutX="168.0" layoutY="436.0" text="ที่อยู่ : " textFill="#18076f">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <TextField fx:id="staffUsernameTextField" layoutX="235.0" layoutY="185.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="staffFnameTextField" layoutX="235.0" layoutY="244.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="staffLnameTextField" layoutX="235.0" layoutY="310.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </TextField>
+        <TextArea fx:id="staffAddressTextArea" layoutX="235.0" layoutY="436.0" prefHeight="79.0" prefWidth="437.0" styleClass="textAreawithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </TextArea>
+        <TextField fx:id="staffPhoneTextField" layoutX="235.0" layoutY="374.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </TextField>
+        <Button fx:id="submitStaffAccountBtn" layoutX="753.0" layoutY="301.0" mnemonicParsing="false" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="Submit" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Button>
+        <Label fx:id="editAccountErrorLabel" layoutX="737.0" layoutY="379.0" prefHeight="21.0" prefWidth="165.0" text="error" textAlignment="CENTER" textFill="RED">
+            <font>
+                <Font name="System Bold Italic" size="15.0" />
+            </font></Label>
+    </children>
+</AnchorPane>

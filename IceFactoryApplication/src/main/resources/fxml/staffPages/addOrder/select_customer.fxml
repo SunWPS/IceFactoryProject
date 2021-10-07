@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="599.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController.SelcectCustomer">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../ImageAndIcon/adminAndStaffPageImage/Background/select_customerBG.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="customerTable" layoutX="39.0" layoutY="134.0" prefHeight="422.0" prefWidth="623.0">
+        <columns>
+          <TableColumn fx:id="customerId" prefWidth="202.0" text="รหัสลูกค้า" />
+          <TableColumn fx:id="nameColumn" minWidth="0.0" prefWidth="177.0" text="ชื่อ" />
+            <TableColumn fx:id="typeColumn" prefWidth="147.0" text="ประเภทลูกค้า" />
+            <TableColumn fx:id="phoneColumn" prefWidth="212.0" text="เบอร์โทร" />
+            <TableColumn fx:id="addressColumn" prefWidth="377.0" text="ที่อยู่" />
+        </columns>
+      </TableView>
+      <Button fx:id="selectBtn" layoutX="705.0" layoutY="282.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="202.0" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="เลือกลูกค้า" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="addCustomerBtn" layoutX="705.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleAddCustomerBtnOnAction" prefHeight="54.0" prefWidth="202.0" styleClass="redBtn" stylesheets="@../../../StyleSheet/style.css" text="เพิ่มลูกค้า" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

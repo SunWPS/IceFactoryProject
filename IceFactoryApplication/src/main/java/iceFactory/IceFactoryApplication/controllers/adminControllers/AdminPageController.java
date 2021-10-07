@@ -76,7 +76,6 @@ public class AdminPageController {
     }
 
 
-
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;
     }

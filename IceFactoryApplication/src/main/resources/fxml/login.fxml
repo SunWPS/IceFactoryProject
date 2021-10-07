@@ -42,7 +42,13 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <RadioButton fx:id="ownerBtn" layoutX="876.0" layoutY="539.0" mnemonicParsing="false" text="Owner" />
-      <Label fx:id="errorLabel" layoutX="888.0" layoutY="590.0" text="ERROT" />
+      <RadioButton fx:id="ownerBtn" layoutX="887.0" layoutY="539.0" mnemonicParsing="false" stylesheets="@../StyleSheet/style.css" text="Owner" textFill="#0a076f">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></RadioButton>
+      <Label fx:id="errorLabel" layoutX="876.0" layoutY="469.0" prefHeight="21.0" prefWidth="419.0" text="error" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Label>
    </children>
 </AnchorPane>

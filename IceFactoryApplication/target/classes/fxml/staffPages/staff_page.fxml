@@ -15,8 +15,8 @@
             <Image url="@../../ImageAndIcon/adminAndStaffPageImage/Background/homeBg.jpg" />
          </image>
       </ImageView>
-      <Pane layoutX="741.0" layoutY="235.0" prefHeight="276.0" prefWidth="301.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
-      <Button fx:id="changePasswordBtn" layoutX="741.0" layoutY="229.0" mnemonicParsing="false" onAction="#handletChangePasswordBtnOnAction" prefHeight="276.0" prefWidth="293.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+      <Pane layoutX="911.0" layoutY="437.0" prefHeight="240.0" prefWidth="266.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
+      <Button fx:id="changePasswordBtn" layoutX="911.0" layoutY="431.0" mnemonicParsing="false" onAction="#handletChangePasswordBtnOnAction" prefHeight="240.0" prefWidth="257.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
          <graphic>
             <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,6 +35,56 @@
             <ImageView id="logoutBtn" fitHeight="54.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../ImageAndIcon/adminAndStaffPageImage/logout.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="197.0" layoutY="120.0" prefHeight="240.0" prefWidth="266.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
+      <Button fx:id="addOrderBtn" layoutX="199.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleAddOrderBtnOnAction" prefHeight="240.0" prefWidth="257.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+         <graphic>
+            <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../ImageAndIcon/adminAndStaffPageImage/addOrder.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="550.0" layoutY="117.0" prefHeight="240.0" prefWidth="266.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
+      <Button fx:id="prepareBtn" layoutX="552.0" layoutY="111.0" mnemonicParsing="false" onAction="#handlePrepareBtnOnAction" prefHeight="240.0" prefWidth="257.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+         <graphic>
+            <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../ImageAndIcon/adminAndStaffPageImage/prepareBtn.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="911.0" layoutY="120.0" prefHeight="240.0" prefWidth="266.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
+      <Button fx:id="createBillBtn" layoutX="913.0" layoutY="114.0" mnemonicParsing="false" onAction="#handleCreateBillBtnOnAction" prefHeight="240.0" prefWidth="257.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+         <graphic>
+            <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../ImageAndIcon/adminAndStaffPageImage/billBtn.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="195.0" layoutY="440.0" prefHeight="240.0" prefWidth="266.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
+      <Button fx:id="deliveredBtn" layoutX="197.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleDeliveredBtnOnAction" prefHeight="240.0" prefWidth="257.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+         <graphic>
+            <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../ImageAndIcon/adminAndStaffPageImage/deliveredBtn.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Pane layoutX="552.0" layoutY="440.0" prefHeight="240.0" prefWidth="266.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
+      <Button fx:id="customerListBtn" layoutX="552.0" layoutY="434.0" mnemonicParsing="false" onAction="#handleCustomerListBtnOnAction" prefHeight="240.0" prefWidth="257.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+         <graphic>
+            <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../ImageAndIcon/adminAndStaffPageImage/btn.png" />
                </image>
             </ImageView>
          </graphic>

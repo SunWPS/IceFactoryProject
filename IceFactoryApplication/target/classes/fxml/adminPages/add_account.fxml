@@ -82,7 +82,10 @@
             <Font size="18.0" />
          </font>
       </PasswordField>
-      <Label fx:id="addAccountErrorLabel" layoutX="736.0" layoutY="390.0" prefHeight="21.0" prefWidth="109.0" text="ERROR" />
+      <Label fx:id="addAccountErrorLabel" layoutX="737.0" layoutY="379.0" prefHeight="21.0" prefWidth="165.0" text="error" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font></Label>
       <Label layoutX="16.0" layoutY="255.0" prefHeight="36.0" prefWidth="212.0" text="ConfirmPassword : " textFill="#18076f">
          <font>
             <Font size="25.0" />

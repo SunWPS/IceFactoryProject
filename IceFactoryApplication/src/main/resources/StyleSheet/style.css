@@ -98,3 +98,8 @@
     -fx-background-color : #5c6984;
     -fx-background-radius :  20 20 20 20;
 }
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: #130CB7;
+    -fx-background-insets: 0;
+}

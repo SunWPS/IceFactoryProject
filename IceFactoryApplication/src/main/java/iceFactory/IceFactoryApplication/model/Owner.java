@@ -9,7 +9,7 @@ public class Owner extends Account{
 
     //editStock
     //edit
-//    private Set<Staff> staffs = new HashSet<>();
+    private Set<Staff> staffs = new HashSet<>();
 
 
     public Owner changePassword(String oldPass, String newPass){
@@ -55,11 +55,11 @@ public class Owner extends Account{
 
     }
 
-//    public Set<Staff> getStaffs() {
-//        return staffs;
-//    }
-//
-//    public void setStaffs(Set<Staff> staffs) {
-//        this.staffs = staffs;
-//    }
+    public Set<Staff> getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(Set<Staff> staffs) {
+        this.staffs = staffs;
+    }
 }

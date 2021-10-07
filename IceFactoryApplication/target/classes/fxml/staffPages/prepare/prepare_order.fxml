@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="756.0" prefWidth="1354.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController.PrepareOrderController">
+   <children>
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../ImageAndIcon/adminAndStaffPageImage/Background/prepareBg.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="orderListTable" layoutX="56.0" layoutY="238.0" prefHeight="500.0" prefWidth="666.0">
+        <columns>
+          <TableColumn fx:id="timeColumn" prefWidth="144.0" text="เวลาที่สั่ง" />
+          <TableColumn fx:id="orderIdColumn" minWidth="0.0" prefWidth="277.0" text="รหัสสินค้า" />
+            <TableColumn fx:id="customerColumn" prefWidth="230.0" text="ชื่อลูกค้า" />
+            <TableColumn fx:id="customerTypeColumn" prefWidth="131.0" text="ประเภทลูกค้า" />
+        </columns>
+      </TableView>
+      <Label layoutX="56.0" layoutY="204.0" text="ตาราง Order ที่ยังไม่ถูกจัดเตรียมสินค้า" textFill="#0b127f">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TableView fx:id="stockTable" layoutX="765.0" layoutY="138.0" prefHeight="200.0" prefWidth="354.0">
+        <columns>
+          <TableColumn fx:id="stockProductColumn" prefWidth="262.0" text="สินค้า" />
+          <TableColumn fx:id="stockQuantityColumn" prefWidth="90.0" text="จำนวน" />
+        </columns>
+      </TableView>
+      <Label layoutX="765.0" layoutY="104.0" text="สินค้าในคลัง" textFill="#0b127f">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TableView fx:id="orderProductTable" layoutX="765.0" layoutY="404.0" prefHeight="200.0" prefWidth="554.0">
+         <columns>
+            <TableColumn fx:id="productColumn" prefWidth="307.0" text="สินค้า" />
+            <TableColumn fx:id="quantityColumn" prefWidth="131.0" text="จำนวน" />
+            <TableColumn fx:id="missColumn" prefWidth="115.0" text="ขาด" />
+         </columns>
+      </TableView>
+      <Label layoutX="765.0" layoutY="370.0" text="สินค้าใน order:" textFill="#0b127f">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="928.0" layoutY="374.0" text="12345678901234567890123456789012345" textFill="#0b127f">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="updateStockBtn" layoutX="1144.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleUpdateStockBtnOnAction" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="Update Stock" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="prepareFinishBtn" layoutX="929.0" layoutY="650.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="227.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="จัดเตรียมเส็จสิ้น" textFill="#431515">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button id="backBtn" fx:id="backBtn" layoutX="29.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleBackBtnOnAction" styleClass="transparentBtn" stylesheets="@../../../StyleSheet/style.css">
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../ImageAndIcon/adminAndStaffPageImage/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="needMoreLabel" layoutX="765.0" layoutY="616.0" prefHeight="21.0" prefWidth="151.0" text="Label" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
