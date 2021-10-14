@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,17 +16,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class SelcectCustomer {
 
     private IceFactoryAPIService service;
     private Customer selectedCustomer;
     private boolean check_selected;
+    ObservableList<Customer> customersData;
+    FilteredList<Customer> customersFilteredList;
+
     @FXML private TableView customerTable;
     @FXML private TableColumn customerId;
     @FXML private TableColumn nameColumn;
@@ -33,6 +39,7 @@ public class SelcectCustomer {
     @FXML private TableColumn phoneColumn;
     @FXML private TableColumn addressColumn;
     @FXML private Button selectBtn;
+    @FXML private TextField nameSearch;
 
     public void setService(IceFactoryAPIService service) {
         this.service = service;
@@ -67,8 +74,21 @@ public class SelcectCustomer {
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-        for(Customer i : customerList)
-         customerTable.getItems().add(i);
+
+        customersData = FXCollections.observableList(customerList);
+        customersFilteredList = new FilteredList<>(customersData, b->true);
+
+        nameSearch.textProperty().addListener(((observable, oldValue, newValue) -> {
+            customersFilteredList.setPredicate(customer ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String data = newValue.toLowerCase();
+                return customer.getName().contains(data);
+            });
+        }));
+
+        customerTable.setItems(customersFilteredList);
     }
 
     @FXML
