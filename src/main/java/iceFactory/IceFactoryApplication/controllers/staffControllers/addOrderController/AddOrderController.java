@@ -103,10 +103,7 @@ public class AddOrderController {
     @FXML public void handleAddProductBtnOnAction(ActionEvent event) throws IOException {
         try {
                 String pName = productComboBox.getValue();
-
                 String quantity = quantityTextField.getText();
-
-
                 OrderItem orderItem = new OrderItem();
                 orderItem.setPName(pName);
                 orderItem.setOrderQuantity(Integer.parseInt(quantity));

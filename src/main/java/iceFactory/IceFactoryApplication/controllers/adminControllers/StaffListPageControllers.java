@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StaffListPageControllers {
-    @FXML private Button backBtn,deleteAccountBtn;
+    @FXML private Button backBtn,deleteAccountBtn,editBtn;
     @FXML private TableColumn nameCol,lNameCol,usernameCol,phoneCol,addrCol,loginTimeCol;
     @FXML private TableView staffTableView;
     private AccountManagement accountManage;
@@ -36,6 +36,9 @@ public class StaffListPageControllers {
                 createStaffListTable();
             }
         });
+        if(selectedStaff==null) {editBtn.setDisable(true);
+            deleteAccountBtn.setDisable(true);}
+
 
 
     }
@@ -53,6 +56,8 @@ public class StaffListPageControllers {
             if (newValue != null) {
                 Staff a = (Staff) newValue;
                 selectedStaff=a;
+                editBtn.setDisable(false);
+                deleteAccountBtn.setDisable(false);
             }
         });
     }
@@ -104,6 +109,7 @@ public class StaffListPageControllers {
         confirmDeleteAccountPageController.setSelectedStaff(selectedStaff);
         stage.showAndWait();
         selectedStaff=null;
+        deleteAccountBtn.setDisable(true);
         createStaffListTable();
         }
     }
@@ -118,6 +124,8 @@ public class StaffListPageControllers {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.showAndWait();
+        selectedStaff=null;
+        editBtn.setDisable(true);
     }
 
     public void setAccountManage(AccountManagement accountManage) {

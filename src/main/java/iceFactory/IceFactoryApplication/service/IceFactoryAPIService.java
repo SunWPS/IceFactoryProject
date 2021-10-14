@@ -4,6 +4,7 @@ package iceFactory.IceFactoryApplication.service;
 import iceFactory.IceFactoryApplication.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,14 @@ import java.util.UUID;
 
 
 
-//@Service
+
 public class IceFactoryAPIService {
 
 //    @Autowired
     private RestTemplate restTemplate ;
+
+
+    private String url="https://ice-factory-api.herokuapp.com/";
 
 
     public IceFactoryAPIService(RestTemplate restTemplate) {
@@ -31,142 +35,115 @@ public class IceFactoryAPIService {
 
     //OWNER---------------------------------------------------------------------
     public List<Owner> getOwnerAll() {
-        String url = "http://localhost:8090/owner";
-        ResponseEntity<Owner[]> response = restTemplate.getForEntity(url, Owner[].class);
+        ResponseEntity<Owner[]> response = restTemplate.getForEntity(url+"owner", Owner[].class);
         Owner[] owner = response.getBody();
         return Arrays.asList(owner);
     }
     public Owner getOwnerByUsername(String username) {
-        String url = "http://localhost:8090/owner/" + username;
-        ResponseEntity<Owner> response = restTemplate.getForEntity(url, Owner.class);
+        ResponseEntity<Owner> response = restTemplate.getForEntity(url+"owner/"+username, Owner.class);
         return response.getBody();
     }
 
     public void updateOwner(Owner owner) {
-        String url = "http://localhost:8090/owner/" + owner.getUsername();
-        restTemplate.put(url, owner, Owner.class);
+        restTemplate.put(url+"owner/"+owner.getUsername(), owner, Owner.class);
     }
 
     //Staff---------------------------------------------------------------------
     public List<Staff> getStaffAll() {
-        String url = "http://localhost:8090/staff";
-        ResponseEntity<Staff[]> response = restTemplate.getForEntity(url, Staff[].class);
+        ResponseEntity<Staff[]> response = restTemplate.getForEntity(url+"staff", Staff[].class);
         Staff[] staffs = response.getBody();
         return Arrays.asList(staffs);
     }
 
     public Staff getStaffByUsername(String username) {
-        String url = "http://localhost:8090/staff/" + username;
-        ResponseEntity<Staff> response = restTemplate.getForEntity(url, Staff.class);
+        ResponseEntity<Staff> response = restTemplate.getForEntity(url+"staff/"+username, Staff.class);
         Staff staff = response.getBody();
         return staff;
     }
 
     public void addStaff(Staff staff) {
-        String url = "http://localhost:8090/staff";
-        restTemplate.postForObject(url, staff, Staff.class);
+        restTemplate.postForObject(url+"staff", staff, Staff.class);
     }
 
     public void updateStaff(Staff staff) {
-        String url = "http://localhost:8090/staff/" + staff.getUsername();
-        restTemplate.put(url, staff, Staff.class);
+        restTemplate.put(url+"staff/"+staff.getUsername(), staff, Staff.class);
     }
 
     public void deleteStaff(String username) {
-        String url = "http://localhost:8090/staff/" + username;
-        restTemplate.delete(url);
+        restTemplate.delete(url+"staff/"+username);
     }
 
 //------------customer----------------------------------------------------------------------------------------
     public List<Customer> getCustomerAll(){
-        String url = "http://localhost:8090/customer";
-        ResponseEntity<Customer[]> response = restTemplate.getForEntity(url, Customer[].class);
+        ResponseEntity<Customer[]> response = restTemplate.getForEntity(url+"customer", Customer[].class);
         Customer[] customers = response.getBody();
         return Arrays.asList(customers);
     }
 
     public Customer getCustomerByCustomerId(UUID id){
-        String url = "http://localhost:8090/customer/"+ id;
-        ResponseEntity<Customer> response = restTemplate.getForEntity(url, Customer.class);
+        ResponseEntity<Customer> response = restTemplate.getForEntity(url+"customer/"+id, Customer.class);
         return response.getBody();
     }
 
     public void updateCustomer(Customer customer){
-        String url = "http://localhost:8090/customer/" + customer.getCustomerId();
-        restTemplate.put(url, customer, Customer.class);
+        restTemplate.put(url+"customer/" + customer.getCustomerId(), customer, Customer.class);
     }
 
     public void addCustomer(Customer customer){
-        String url = "http://localhost:8090/customer";
-        restTemplate.postForObject(url, customer, Customer.class);
+        restTemplate.postForObject(url+"customer/", customer, Customer.class);
     }
 
 //-------------Product------------------------------------------------------------------------------------------------
 
    public List<Product> getProductAll(){
-        String url = "http://localhost:8090/product";
-        ResponseEntity<Product[]> response = restTemplate.getForEntity(url,Product[].class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity(url+"product/",Product[].class);
         Product[] product = response.getBody();
         return Arrays.asList(product);
    }
     public Product getProductByPName(String pName){
-        String url = "http://localhost:8090/product/" + pName;
-        ResponseEntity<Product> response = restTemplate.getForEntity(url, Product.class);
+        ResponseEntity<Product> response = restTemplate.getForEntity(url+"product/"+pName, Product.class);
         Product product = response.getBody();
         return product;
     }
 
     public void updateProduct(Product product){
-        String url = "http://localhost:8090/product/" + product.getPName();
-        restTemplate.put(url, product, Product.class);
+        restTemplate.put(url+"product/"+ product.getPName(), product, Product.class);
     }
 //------------Order---------------------------------------------------------------------------------------
 
     public List<CustomerOrder> getCustomerOrderAll(){
-        String url = "http://localhost:8090/customerorder";
-        ResponseEntity<CustomerOrder[]> response = restTemplate.getForEntity(url, CustomerOrder[].class);
+        ResponseEntity<CustomerOrder[]> response = restTemplate.getForEntity(url+"customerorder/", CustomerOrder[].class);
         CustomerOrder[] customerOrder = response.getBody();
         return Arrays.asList(customerOrder);
     }
 
     public CustomerOrder getCustomerOrderById(UUID id){
-        String url = "http://localhost:8090/customerorder/"+ id;
-        ResponseEntity<CustomerOrder> response = restTemplate.getForEntity(url, CustomerOrder.class);
+        ResponseEntity<CustomerOrder> response = restTemplate.getForEntity(url+"customerorder/"+id, CustomerOrder.class);
         return response.getBody();
     }
 
     public void addCustomerOrder(CustomerOrder customerOrder) {
-        String url = "http://localhost:8090/customerorder";
-        restTemplate.postForObject(url, customerOrder, CustomerOrder.class);
+        restTemplate.postForObject(url+"customerorder/", customerOrder, CustomerOrder.class);
     }
 
     public void updateCustomerOrder(CustomerOrder order){
-        String url="http://localhost:8090/customerorder/"+order.getOrderId();
-        restTemplate.put(url,order,CustomerOrder.class);
+        restTemplate.put(url+"customerorder/"+order.getOrderId(),order,CustomerOrder.class);
     }
 //----------------OrderItem----------------------------------------------------------------------------------------
     public List<OrderItem> getOrderItemAll(){
-        String url = "http://localhost:8090/orderItem";
-        ResponseEntity<OrderItem[]> response = restTemplate.getForEntity(url, OrderItem[].class);
+        ResponseEntity<OrderItem[]> response = restTemplate.getForEntity(url+"orderItem/", OrderItem[].class);
         OrderItem[] orderItems = response.getBody();
         return Arrays.asList(orderItems);
     }
 
     public OrderItem getOrderItemByOrderItemId(UUID id){
-        String url = "http://localhost:8090/orderItem/"+ id;
-        ResponseEntity<OrderItem> response = restTemplate.getForEntity(url, OrderItem.class);
+        ResponseEntity<OrderItem> response = restTemplate.getForEntity(url+"orderItem/"+id, OrderItem.class);
         return response.getBody();
     }
 
     public void addOrderItem(OrderItem orderItem) {
-        String url = "http://localhost:8090/orderItem";
-        restTemplate.postForObject(url, orderItem, OrderItem.class);
+        restTemplate.postForObject(url+"orderItem/", orderItem, OrderItem.class);
     }
-
-
-
-
-
 
 }
 
