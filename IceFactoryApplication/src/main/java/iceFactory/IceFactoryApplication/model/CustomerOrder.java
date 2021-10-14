@@ -101,4 +101,8 @@ public class CustomerOrder {
     public String getCustomerName() {return customer.getName();}
 
     public String getCustomerType() {return customer.getType();}
+
+    public String getCustomerAddress() {return customer.getAddress();}
+
+    public String getCustomerPhone() {return customer.getPhoneNumber();}
 }

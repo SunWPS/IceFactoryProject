@@ -31,12 +31,12 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Text>
-      <Label layoutX="945.0" layoutY="369.0" text="123456789012345678901223456789012345">
+      <Label fx:id="orderIdLaBel" layoutX="945.0" layoutY="369.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="1039.0" layoutY="453.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="201.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="ยืนยันการจัดส่่ง">
+      <Button fx:id="preparedBtn" layoutX="1039.0" layoutY="453.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="201.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="ยืนยันการจัดส่่ง">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
