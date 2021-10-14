@@ -22,8 +22,9 @@ public class Product {
         }
     }
 
+
     public void decreaseStock(int quantity){
-        if(quantity >0 && quantity <= this.quantity){
+        if(quantity > 0 && quantity <= this.quantity){
             this.quantity-=quantity;
         }
     }
@@ -34,7 +35,6 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
-
 
     public float getPrice() {
         return price;

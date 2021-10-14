@@ -9,6 +9,7 @@ import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.SortedSet;
 
 public class PrepareOrderController {
     private AccountManagement accountManage;
@@ -49,6 +53,7 @@ public class PrepareOrderController {
             @Override
             public void run() {
                 showProduct();
+                showCustomerOrder();
             }
         });
 
@@ -88,21 +93,29 @@ public class PrepareOrderController {
     }
 
     private void showCustomerOrder(){
-//        List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
-//        timeColumn.setCellValueFactory(new PropertyValueFactory<>(""));
-//        orderIdColumn.setCellValueFactory();
-//        customerColumn.setCellValueFactory();
-//        customerTypeColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+        List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+        orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
+        customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerTypeColumn.setCellValueFactory(new PropertyValueFactory<>("customerType"));
 
+        ArrayList<CustomerOrder> ordersThatNotPrepared = new ArrayList<>();
+        for(CustomerOrder order : customerOrderList){
+            if(order.getOrderStatus().equals(CustomerOrder.Status.PrepareProduct.toString()))
+                ordersThatNotPrepared.add(order);
+        }
+        List<CustomerOrder> sorted = (ArrayList<CustomerOrder>)ordersThatNotPrepared.clone();
+        sorted.sort(Comparator.comparing(CustomerOrder::getOrderDate));
+        customerOrdersData = FXCollections.observableList(sorted);
+        orderListTable.setItems(customerOrdersData);
     }
 
     private void showProduct(){
-//        List<Product> productList = service.getProductAll();
-//        productsData = FXCollections.observableList(productList);
-//        System.out.println(productList.get(0).getPName());
-//        stockProductColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
-//        stockQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-//        stockTable.setItems(productsData);
+        List<Product> productList = service.getProductAll();
+        productsData = FXCollections.observableList(productList);
+        stockProductColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
+        stockQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        stockTable.setItems(productsData);
     }
 
     public void setAccountManage(AccountManagement accountManage) {

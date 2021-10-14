@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Customer {
-    enum CustomerType{
+    public enum CustomerType{
         Delivery,Pickup
     }
     private UUID customerId;
@@ -61,10 +61,6 @@ public class Customer {
 
     public void setPickup(){
         type = CustomerType.Pickup.toString();
-    }
-
-    public Set<CustomerOrder> getCustomerOrders() {
-        return customerOrders;
     }
 
     public void setCustomerOrders(Set<CustomerOrder> customerOrders) {

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class CustomerOrder {
 
-    enum Status{
+   public enum Status{
         PrepareProduct,
         WaitForDelivery,
         CloseOrder
@@ -97,4 +97,8 @@ public class CustomerOrder {
     public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
+
+    public String getCustomerName() {return customer.getName();}
+
+    public String getCustomerType() {return customer.getType();}
 }
