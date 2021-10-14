@@ -1,5 +1,7 @@
 package iceFactory.IceFactoryApplication.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CustomerOrder {
@@ -14,6 +16,7 @@ public class CustomerOrder {
     private Staff staff;
     private List<OrderItem> orderItemList = new ArrayList<>();
     private String orderStatus = Status.PrepareProduct.toString();
+    private String orderDate;
 
     public void PrepareOrder(){
         for(OrderItem item : orderItemList){
@@ -27,10 +30,14 @@ public class CustomerOrder {
         return;
     }
 
+    public void timeStamp(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        orderDate = LocalDateTime.now().format(formatter);
+    }
+
     public void addOrder(OrderItem item){
         orderItemList.add(item);
     }
-
 
     public UUID getOrderId() {
         return orderId;
@@ -83,8 +90,11 @@ public class CustomerOrder {
         }
     }
 
+    public String getOrderDate() {
+        return orderDate;
+    }
 
-
-
-
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
 }
