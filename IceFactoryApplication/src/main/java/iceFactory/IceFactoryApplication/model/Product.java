@@ -11,13 +11,6 @@ public class Product {
     private float priceDelivery;
     private Set<OrderItem> items = new HashSet<>();
 
-    public Product(String pName, int quantity, float price, float priceDelivery) {
-        this.pName = pName;
-        this.quantity = quantity;
-        this.price = price;
-        this.priceDelivery = priceDelivery;
-    }
-
     public boolean checkStock(int quantity){
         if(quantity<= this.quantity && quantity>0) return true;
         else return false;

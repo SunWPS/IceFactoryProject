@@ -41,10 +41,7 @@ public class SelcectCustomer {
     @FXML private Button selectBtn;
     @FXML private TextField nameSearch;
 
-    public void setService(IceFactoryAPIService service) {
-        this.service = service;
-    }
-    @FXML public  void initialize()  {
+    @FXML public void initialize()  {
 
         Platform.runLater(new Runnable() {
             @Override
@@ -114,4 +111,7 @@ public class SelcectCustomer {
         return  selectedCustomer;
     }
     public boolean isCheck_selected() {return check_selected;}
+    public void setService(IceFactoryAPIService service) {
+        this.service = service;
+    }
 }
