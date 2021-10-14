@@ -37,7 +37,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextArea fx:id="AddressTextArea" layoutX="284.0" layoutY="275.0" prefHeight="79.0" prefWidth="437.0" promptText="ที่อยู่" styleClass="textAreawithBlueBorder" stylesheets="@../../../StyleSheet/style.css">
+      <TextArea fx:id="addressTextArea" layoutX="284.0" layoutY="275.0" prefHeight="79.0" prefWidth="437.0" promptText="ที่อยู่" styleClass="textAreawithBlueBorder" stylesheets="@../../../StyleSheet/style.css">
          <font>
             <Font size="18.0" />
          </font>

@@ -58,14 +58,8 @@ public class AddOrderController {
 
     }
     public void setUpCustomerLabel(){
-        try{
             customerId.setText(selectedCustomer.getCustomerId().toString());
             customerName.setText(selectedCustomer.getName());
-        }
-        catch (NullPointerException e){
-            customerName.setVisible(false);
-            customerId.setVisible(false);
-        }
     }
     public void setUpComboBox(){
 
@@ -100,8 +94,10 @@ public class AddOrderController {
         selectCustomer.setService(service);
 
         stage.showAndWait();
-        setSelectedCustomer(selectCustomer.sentSelectedCustomer());
-        setUpCustomerLabel();
+        if(selectCustomer.isCheck_selected()) {
+            setSelectedCustomer(selectCustomer.sentSelectedCustomer());
+            setUpCustomerLabel();
+        }
     }
 
     @FXML public void handleAddProductBtnOnAction(ActionEvent event) throws IOException {

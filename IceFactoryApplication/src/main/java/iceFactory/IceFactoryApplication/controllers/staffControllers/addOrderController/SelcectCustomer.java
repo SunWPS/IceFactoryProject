@@ -25,11 +25,13 @@ public class SelcectCustomer {
 
     private IceFactoryAPIService service;
     private Customer selectedCustomer;
+    private boolean check_selected;
     @FXML private TableView customerTable;
     @FXML private TableColumn customerId;
     @FXML private TableColumn nameColumn;
     @FXML private TableColumn typeColumn;
     @FXML private TableColumn phoneColumn;
+    @FXML private TableColumn addressColumn;
     @FXML private Button selectBtn;
 
     public void setService(IceFactoryAPIService service) {
@@ -41,6 +43,7 @@ public class SelcectCustomer {
             @Override
             public void run() {
                 createCustomerListTable();
+                check_selected = false;
             }
         });
 
@@ -63,12 +66,9 @@ public class SelcectCustomer {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         for(Customer i : customerList)
          customerTable.getItems().add(i);
-
-
-
-
     }
 
     @FXML
@@ -86,10 +86,12 @@ public class SelcectCustomer {
     public void handleSelectBtnOnAction(ActionEvent event) throws IOException{
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
+        check_selected = true;
         stage.close();
     }
 
     public Customer sentSelectedCustomer(){
         return  selectedCustomer;
     }
+    public boolean isCheck_selected() {return check_selected;}
 }

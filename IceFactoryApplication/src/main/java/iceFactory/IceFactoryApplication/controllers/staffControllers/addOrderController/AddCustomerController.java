@@ -23,7 +23,7 @@ public class AddCustomerController {
     @FXML private Button backBtn;
     @FXML private TextField nameTextField;
     @FXML private TextField phoneTextField;
-    @FXML private TextArea AddressTextArea;
+    @FXML private TextArea addressTextArea;
     @FXML private Label errorLabel;
     @FXML private ComboBox typeComboBox;
 
@@ -80,7 +80,7 @@ public class AddCustomerController {
             customer.setName(nameTextField.getText());
         }
         customer.setType((String) typeComboBox.getValue());
-        customer.setAddress(AddressTextArea.getText());
+        customer.setAddress(addressTextArea.getText());
         service.addCustomer(customer);
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
@@ -90,6 +90,9 @@ public class AddCustomerController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.showAndWait();
+        nameTextField.setText("");
+        phoneTextField.setText("");
+        addressTextArea.setText("");
     }
 
 

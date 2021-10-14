@@ -25,7 +25,7 @@
           <TableColumn fx:id="quantityColumn" prefWidth="174.0" text="จำนวน" />
         </columns>
       </TableView>
-      <Button fx:id="addProductBtn" layoutX="413.0" layoutY="316.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="151.0" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="เพิ่ม" textFill="WHITE" onAction="#handleAddProductBtnOnAction">
+      <Button fx:id="addProductBtn" layoutX="413.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleAddProductBtnOnAction" prefHeight="43.0" prefWidth="151.0" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="เพิ่ม" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font></Button>
@@ -89,12 +89,12 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="customerId" layoutX="168.0" layoutY="460.0" text="01234567890123456789012345678901234" textFill="#18076f">
+      <Label fx:id="customerId" layoutX="168.0" layoutY="460.0" textFill="#18076f">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="customerName" layoutX="168.0" layoutY="510.0" text="peeradon" textFill="#18076f">
+      <Label fx:id="customerName" layoutX="168.0" layoutY="510.0" textFill="#18076f">
          <font>
             <Font size="25.0" />
          </font>
