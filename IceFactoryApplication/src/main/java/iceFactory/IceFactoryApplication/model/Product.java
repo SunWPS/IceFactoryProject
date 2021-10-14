@@ -34,7 +34,7 @@ public class Product {
             this.quantity-=quantity;
         }
     }
-    public String getpName() {
+    public String getPName() {
         return pName;
     }
 
@@ -55,7 +55,7 @@ public class Product {
         return priceDelivery;
     }
 
-    public void setpName(String pName) {
+    public void setPName(String pName) {
         this.pName = pName;
     }
 

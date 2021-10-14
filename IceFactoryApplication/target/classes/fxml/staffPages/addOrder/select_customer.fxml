@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="599.0" prefWidth="945.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController.SelcectCustomer">
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true">
@@ -25,7 +24,7 @@
             <TableColumn fx:id="addressColumn" prefWidth="377.0" text="ที่อยู่" />
         </columns>
       </TableView>
-      <Button fx:id="selectBtn" layoutX="705.0" layoutY="282.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="202.0" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="เลือกลูกค้า" textFill="WHITE">
+      <Button fx:id="selectBtn" layoutX="705.0" layoutY="282.0" mnemonicParsing="false" onAction="#handleSelectBtnOnAction" prefHeight="54.0" prefWidth="202.0" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="เลือกลูกค้า" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>

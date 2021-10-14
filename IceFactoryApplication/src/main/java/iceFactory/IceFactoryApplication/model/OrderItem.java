@@ -8,10 +8,17 @@ public class OrderItem {
     private Product product;
     private int orderQuantity;
     private float price;
-    private float priceDelivery;
     private CustomerOrder customerOrder;
+    private String pName;
 
-    
+
+    public void setPrice(){
+        if(customerOrder.getCustomer().getType().equals(Customer.CustomerType.Delivery.toString())){
+            this.price = product.getPriceDelivery();
+        } else {
+            this.price = product.getPrice();
+        }
+    };
 
     public Product getProduct() {
         return product;
@@ -29,13 +36,6 @@ public class OrderItem {
         this.orderQuantity = orderQuantity;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public void setPriceDelivery(float priceDelivery) {
-        this.priceDelivery = priceDelivery;
-    }
 
     public void setOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
@@ -46,14 +46,14 @@ public class OrderItem {
     }
 
     public float getPrice() {
-        return product.getPrice()*orderQuantity;
-    }
-
-    public float getPriceDelivery() {
-        return product.getPriceDelivery()*orderQuantity;
+        return this.price;
     }
 
 
+    public String getPName(){
+        return  this.pName;
+    }
+    public void setPName(String name) {this.pName = name;}
 
     public UUID getOrderItemId() {
         return orderItemId;
