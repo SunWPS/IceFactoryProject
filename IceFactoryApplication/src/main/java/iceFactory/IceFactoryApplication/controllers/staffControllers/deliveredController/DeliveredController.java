@@ -77,7 +77,7 @@ public class DeliveredController {
 
         ArrayList<CustomerOrder> ordersThatNotPrepared = new ArrayList<>();
         for(CustomerOrder order : customerOrderList){
-            if(order.getOrderStatus().equals(CustomerOrder.Status.PrepareProduct.toString()))
+            if(order.getOrderStatus().equals(CustomerOrder.Status.WaitForDelivery.toString()))
                 ordersThatNotPrepared.add(order);
         }
         List<CustomerOrder> sorted = (ArrayList<CustomerOrder>)ordersThatNotPrepared.clone();
