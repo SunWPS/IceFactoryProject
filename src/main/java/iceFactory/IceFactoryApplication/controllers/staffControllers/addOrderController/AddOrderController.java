@@ -28,9 +28,10 @@ import java.util.UUID;
 public class AddOrderController {
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
-
+    private OrderItem selectedOrderItem;
     private ArrayList<OrderItem> orderItemArrayList ;
     private Customer selectedCustomer;
+    @FXML private Button deleteBtn;
     @FXML private ComboBox<String> productComboBox;
     @FXML private TextField quantityTextField;
     @FXML private TableView productTable;
@@ -52,6 +53,13 @@ public class AddOrderController {
             public void run() {
                 setUpComboBox();
                 orderItemArrayList = new ArrayList<>();
+            }
+        });
+        productTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                deleteBtn.setDisable(false);
+                OrderItem a = (OrderItem) newValue;
+                selectedOrderItem =  a;
             }
         });
 
@@ -139,6 +147,11 @@ public class AddOrderController {
         customerId.setText("");
         customerName.setText("");
 
+
+    }
+    @FXML public void handleDeleteBtnOnAction(ActionEvent event){
+        orderItemArrayList.remove(selectedOrderItem);
+        productTable.getItems().remove(selectedOrderItem);
 
     }
 

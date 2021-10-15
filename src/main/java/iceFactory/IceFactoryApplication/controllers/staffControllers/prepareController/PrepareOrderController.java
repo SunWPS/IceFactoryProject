@@ -54,9 +54,10 @@ public class PrepareOrderController {
             public void run() {
                 showProduct();
                 showCustomerOrder();
+
             }
         });
-
+        setupOrderProductTable();
         prepareFinishBtn.setDisable(true);
 
         orderListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -64,7 +65,10 @@ public class PrepareOrderController {
                 prepareFinishBtn.setDisable(false);
                 CustomerOrder a = (CustomerOrder) newValue;
                 selectedCustomerOrder =  a;
+
+
             }
+
         });
     }
 
@@ -95,6 +99,7 @@ public class PrepareOrderController {
         showProduct();
     }
 
+
     private void showCustomerOrder(){
         List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
@@ -119,6 +124,20 @@ public class PrepareOrderController {
         stockProductColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
         stockQuantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         stockTable.setItems(productsData);
+    }
+
+    public void setupOrderProductTable(){
+        try {
+            productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
+            quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
+            missColumn.setCellValueFactory(new PropertyValueFactory<>("missing"));
+            orderProductTable.getItems().addAll(selectedCustomerOrder.getOrderItemList());
+            orderProductTable.refresh();
+        }
+        catch (NullPointerException e){
+
+        }
+
     }
 
     public void setAccountManage(AccountManagement accountManage) {

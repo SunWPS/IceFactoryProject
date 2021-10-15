@@ -63,5 +63,13 @@ public class OrderItem {
         return customerOrder;
     }
 
+    public int getMissing(int stock){
+        if(orderQuantity - stock >0)
+            return  orderQuantity-stock;
+        else
+            return 0;
+    }
+
+
 
 }

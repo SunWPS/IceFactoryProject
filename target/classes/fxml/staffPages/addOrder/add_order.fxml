@@ -99,7 +99,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="deleteBtn" layoutX="1216.0" layoutY="488.0" mnemonicParsing="false" styleClass="redBtn" stylesheets="@../../../StyleSheet/style.css" text="นำออก" textFill="WHITE">
+      <Button fx:id="deleteBtn" layoutX="1216.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleDeleteBtnOnAction" styleClass="redBtn" stylesheets="@../../../StyleSheet/style.css" text="นำออก" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
