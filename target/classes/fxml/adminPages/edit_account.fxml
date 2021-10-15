@@ -16,52 +16,42 @@
                 <Image url="@../../ImageAndIcon/adminAndStaffPageImage/Background/editAccountBg.jpg" />
             </image>
         </ImageView>
-        <Label layoutX="100.0" layoutY="189.0" text="Username :" textFill="#18076f">
+        <Label layoutX="148.0" layoutY="200.0" text="ชื่อจริง : " textFill="#18076f">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Label layoutX="146.0" layoutY="248.0" text="ชื่อจริง : " textFill="#18076f">
+        <Label layoutX="130.0" layoutY="264.0" text="นามสกุล : " textFill="#18076f">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Label layoutX="128.0" layoutY="312.0" text="นามสกุล : " textFill="#18076f">
+        <Label layoutX="130.0" layoutY="330.0" text="เบอร์โทร : " textFill="#18076f">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Label layoutX="128.0" layoutY="378.0" text="เบอร์โทร : " textFill="#18076f">
+        <Label layoutX="170.0" layoutY="388.0" text="ที่อยู่ : " textFill="#18076f">
             <font>
                 <Font size="25.0" />
             </font>
         </Label>
-        <Label layoutX="168.0" layoutY="436.0" text="ที่อยู่ : " textFill="#18076f">
-            <font>
-                <Font size="25.0" />
-            </font>
-        </Label>
-        <TextField fx:id="staffUsernameTextField" layoutX="235.0" layoutY="185.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+        <TextField fx:id="staffFnameTextField" layoutX="237.0" layoutY="196.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
             <font>
                 <Font size="18.0" />
             </font>
         </TextField>
-        <TextField fx:id="staffFnameTextField" layoutX="235.0" layoutY="244.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+        <TextField fx:id="staffLnameTextField" layoutX="237.0" layoutY="262.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
             <font>
                 <Font size="18.0" />
             </font>
         </TextField>
-        <TextField fx:id="staffLnameTextField" layoutX="235.0" layoutY="310.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </TextField>
-        <TextArea fx:id="staffAddressTextArea" layoutX="235.0" layoutY="436.0" prefHeight="79.0" prefWidth="437.0" styleClass="textAreawithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+        <TextArea fx:id="staffAddressTextArea" layoutX="237.0" layoutY="388.0" prefHeight="79.0" prefWidth="437.0" styleClass="textAreawithBlueBorder" stylesheets="@../../StyleSheet/style.css">
             <font>
                 <Font size="18.0" />
             </font>
         </TextArea>
-        <TextField fx:id="staffPhoneTextField" layoutX="235.0" layoutY="374.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
+        <TextField fx:id="staffPhoneTextField" layoutX="237.0" layoutY="326.0" prefHeight="43.0" prefWidth="437.0" styleClass="textwithBlueBorder" stylesheets="@../../StyleSheet/style.css">
             <font>
                 <Font size="18.0" />
             </font>

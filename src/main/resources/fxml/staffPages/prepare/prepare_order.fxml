@@ -62,7 +62,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="prepareFinishBtn" layoutX="929.0" layoutY="650.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="227.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="จัดเตรียมเส็จสิ้น" textFill="#431515">
+      <Button fx:id="prepareFinishBtn" layoutX="929.0" layoutY="650.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="227.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="จัดเตรียมเสร็จสิ้น" textFill="#431515">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

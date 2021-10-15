@@ -89,7 +89,10 @@ public class PrepareOrderController {
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
+        UpdateStockController updateStockController = loader.getController();
+        updateStockController.setService(service);
         stage.showAndWait();
+        showProduct();
     }
 
     private void showCustomerOrder(){
