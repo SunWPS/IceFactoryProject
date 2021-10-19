@@ -36,7 +36,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="preparedBtn" layoutX="1039.0" layoutY="453.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="201.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="ยืนยันการจัดส่่ง">
+      <Button fx:id="deliveryBtn" layoutX="1039.0" layoutY="453.0" mnemonicParsing="false" onAction="#handleDeliveryBtnOnAction" prefHeight="63.0" prefWidth="201.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="ยืนยันการจัดส่่ง">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

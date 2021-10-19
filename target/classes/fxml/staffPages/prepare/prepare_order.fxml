@@ -52,17 +52,17 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Label layoutX="928.0" layoutY="374.0" text="12345678901234567890123456789012345" textFill="#0b127f">
+      <Label fx:id="orderIdLabel" layoutX="928.0" layoutY="374.0" text="12345678901234567890123456789012345" textFill="#0b127f">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Button fx:id="updateStockBtn" layoutX="1144.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleUpdateStockBtnOnAction" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="Update Stock" textFill="WHITE">
+      <Button fx:id="updateStockBtn" layoutX="1144.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleUpdateStockBtnOnAction" styleClass="blueButton" stylesheets="@../../../StyleSheet/style.css" text="เพิ่มสินค้า" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="prepareFinishBtn" layoutX="929.0" layoutY="650.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="227.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="จัดเตรียมเสร็จสิ้น" textFill="#431515">
+      <Button fx:id="prepareFinishBtn" layoutX="929.0" layoutY="650.0" mnemonicParsing="false" onAction="#handlePrepareFinishBtnOnAction" prefHeight="81.0" prefWidth="227.0" styleClass="greenBtn" stylesheets="@../../../StyleSheet/style.css" text="จัดเตรียมเสร็จสิ้น" textFill="#431515">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -76,7 +76,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="needMoreLabel" layoutX="765.0" layoutY="616.0" prefHeight="21.0" prefWidth="151.0" text="Label" textFill="RED">
+      <Label fx:id="needMoreLabel" layoutX="765.0" layoutY="616.0" prefHeight="25.0" prefWidth="452.0" textFill="RED">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>

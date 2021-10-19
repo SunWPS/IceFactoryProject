@@ -130,8 +130,13 @@ public class AddOrderController {
         customerOrder.setCustomer(selectedCustomer);
         customerOrder.setStaff(accountManage.getCurrentStaff());
         for(OrderItem i : orderItemArrayList){
+            service.addOrderItem(i);
             customerOrder.addOrder(i);}
+        
+        
         customerOrder.timeStamp();
+        for(OrderItem i :customerOrder.getOrderItemList())
+        System.out.println(i.getPName());
         service.addCustomerOrder(customerOrder);
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
