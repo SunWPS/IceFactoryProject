@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,6 +48,7 @@ public class PrepareOrderController {
     //orderProductTable
     @FXML private TableColumn productColumn, quantityColumn, missColumn;
 
+    @FXML private Label needMoreLabel;
 
     @FXML public void initialize(){
         Platform.runLater(new Runnable() {
@@ -99,23 +101,42 @@ public class PrepareOrderController {
         showProduct();
     }
 
+    @FXML public void handlePrepareFinishBtnOnAction(ActionEvent event)throws IOException{
+        try{
+        selectedCustomerOrder.PrepareOrder();
+        service.updateCustomerOrder(selectedCustomerOrder);
+        }
+        catch (IllegalArgumentException e){
+            needMoreLabel.setText("Need More Item");
+        }
+        finally {
+            selectedCustomerOrder = null;
+        }
+        showCustomerOrder();
+
+    }
+
 
     private void showCustomerOrder(){
-        List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-        orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
-        customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        customerTypeColumn.setCellValueFactory(new PropertyValueFactory<>("customerType"));
 
-        ArrayList<CustomerOrder> ordersThatNotPrepared = new ArrayList<>();
-        for(CustomerOrder order : customerOrderList){
-            if(order.getOrderStatus().equals(CustomerOrder.Status.PrepareProduct.toString()))
-                ordersThatNotPrepared.add(order);
-        }
-        List<CustomerOrder> sorted = (ArrayList<CustomerOrder>)ordersThatNotPrepared.clone();
-        sorted.sort(Comparator.comparing(CustomerOrder::getOrderDate));
-        customerOrdersData = FXCollections.observableList(sorted);
-        orderListTable.setItems(customerOrdersData);
+            List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
+
+            timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+            orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
+            customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+            customerTypeColumn.setCellValueFactory(new PropertyValueFactory<>("customerType"));
+
+            ArrayList<CustomerOrder> ordersThatNotPrepared = new ArrayList<>();
+            for(CustomerOrder order : customerOrderList){
+                if(order.getOrderStatus().equals(CustomerOrder.Status.PrepareProduct.toString()))
+                    ordersThatNotPrepared.add(order);
+            }
+            List<CustomerOrder> sorted = (ArrayList<CustomerOrder>)ordersThatNotPrepared.clone();
+            sorted.sort(Comparator.comparing(CustomerOrder::getOrderDate));
+            customerOrdersData = FXCollections.observableList(sorted);
+            orderListTable.setItems(customerOrdersData);
+
+
     }
 
     private void showProduct(){
@@ -135,10 +156,11 @@ public class PrepareOrderController {
             orderProductTable.refresh();
         }
         catch (NullPointerException e){
-
+            System.out.println("______________________sdada");
         }
-
+        System.out.println(selectedCustomerOrder.getOrderItemList());
     }
+
 
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;

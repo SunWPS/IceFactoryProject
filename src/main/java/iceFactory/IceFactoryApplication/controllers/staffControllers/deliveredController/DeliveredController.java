@@ -31,7 +31,7 @@ public class DeliveredController {
 
     @FXML private TableView orderListTable;
     @FXML private TableColumn timeColumn, orderIdColumn, customerColumn, customerTypeColumn, phoneColumn, addressColumn;
-    @FXML private Button preparedBtn;
+    @FXML private Button deliveryBtn;
     @FXML private Label orderIdLaBel;
 
     @FXML public void initialize(){
@@ -42,11 +42,11 @@ public class DeliveredController {
             }
         });
 
-        preparedBtn.setDisable(true);
+        deliveryBtn.setDisable(true);
 
         orderListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                preparedBtn.setDisable(false);
+                deliveryBtn.setDisable(false);
                 CustomerOrder a = (CustomerOrder) newValue;
                 selectedCustomerOrder =  a;
                 orderIdLaBel.setText(selectedCustomerOrder.getOrderId().toString());
@@ -66,7 +66,16 @@ public class DeliveredController {
         stage.show();
     }
 
+    @FXML public void handleDeliveryBtnOnAction(ActionEvent event) throws IOException{
+        selectedCustomerOrder.changeStatus();
+        service.updateCustomerOrder(selectedCustomerOrder);
+        showCustomerOrder();
+        orderIdLaBel.setText("");
+        selectedCustomerOrder= null;
+
+    }
     private void showCustomerOrder(){
+
         List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
         orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
