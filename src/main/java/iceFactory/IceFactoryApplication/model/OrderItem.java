@@ -14,11 +14,15 @@ public class OrderItem {
 
     public void setPrice(){
         if(customerOrder.getCustomer().getType().equals(Customer.CustomerType.Delivery.toString())){
-            this.price = product.getPriceDelivery();
+            this.price = product.getPriceDelivery()*orderQuantity;
         } else {
-            this.price = product.getPrice();
+            this.price = product.getPrice()*orderQuantity;
         }
     };
+
+    public void setCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
+    }
 
     public Product getProduct() {
         return product;

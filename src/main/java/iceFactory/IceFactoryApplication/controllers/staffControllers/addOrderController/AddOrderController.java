@@ -37,7 +37,7 @@ public class AddOrderController {
     @FXML private TableView productTable;
     @FXML private TableColumn quantityColumn;
     @FXML private TableColumn productColumn;
-    @FXML private Label addErrorLabel;
+    @FXML private Label addErrorLabel,submitErrorLabel;
     @FXML private Label customerId;
     @FXML private Label customerName;
 
@@ -97,10 +97,8 @@ public class AddOrderController {
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-
         SelcectCustomer selectCustomer = loader.getController();
         selectCustomer.setService(service);
-
         stage.showAndWait();
         if(selectCustomer.isCheck_selected()) {
             setSelectedCustomer(selectCustomer.sentSelectedCustomer());
@@ -115,6 +113,7 @@ public class AddOrderController {
                 OrderItem orderItem = new OrderItem();
                 orderItem.setPName(pName);
                 orderItem.setOrderQuantity(Integer.parseInt(quantity));
+                orderItem.setProduct(service.getProductByPName(pName));
                 orderItemArrayList.add(orderItem);
                 quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
                 productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
@@ -126,13 +125,22 @@ public class AddOrderController {
 
 
     @FXML public void handleSubmitBtnOnAction(ActionEvent event)  throws IOException{
+        if (selectedCustomer == null ){
+            submitErrorLabel.setText("Please select customer first.");
+        }
+        else if(orderItemArrayList.isEmpty()){submitErrorLabel.setText("Please select product first.");}
+        else{
         CustomerOrder customerOrder = new CustomerOrder();
         customerOrder.setCustomer(selectedCustomer);
         customerOrder.setStaff(accountManage.getCurrentStaff());
-        for(OrderItem i : orderItemArrayList){
-            customerOrder.addOrder(i);}
         customerOrder.timeStamp();
-        service.addCustomerOrder(customerOrder);
+        customerOrder = service.addCustomerOrder(customerOrder);
+            for(OrderItem i : orderItemArrayList){
+                i.setCustomerOrder(customerOrder);
+                i.setPrice();
+                service.addOrderItem(i);
+                }
+
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
         stage.setScene(new Scene(loader.load(), 487, 243));
@@ -142,17 +150,15 @@ public class AddOrderController {
         stage.setResizable(false);
         stage.showAndWait();
         productTable.getItems().clear();
-        orderItemArrayList = new ArrayList<>();
+        orderItemArrayList.clear();
         quantityTextField.setText("");
         customerId.setText("");
         customerName.setText("");
-
-
+        selectedCustomer=null;}
     }
     @FXML public void handleDeleteBtnOnAction(ActionEvent event){
         orderItemArrayList.remove(selectedOrderItem);
         productTable.getItems().remove(selectedOrderItem);
-
     }
 
 

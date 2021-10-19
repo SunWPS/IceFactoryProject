@@ -17,6 +17,7 @@ public class CustomerOrder {
     private List<OrderItem> orderItemList = new ArrayList<>();
     private String orderStatus = Status.PrepareProduct.toString();
     private String orderDate;
+    private Bill bill;
 
     public void PrepareOrder(){
         for(OrderItem item : orderItemList){
@@ -88,6 +89,10 @@ public class CustomerOrder {
                 orderStatus = Status.CloseOrder.toString();
                 break;
         }
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
     public String getOrderDate() {

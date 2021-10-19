@@ -112,22 +112,22 @@ public class IceFactoryAPIService {
 //------------Order---------------------------------------------------------------------------------------
 
     public List<CustomerOrder> getCustomerOrderAll(){
-        ResponseEntity<CustomerOrder[]> response = restTemplate.getForEntity(url+"customerorder/", CustomerOrder[].class);
+        ResponseEntity<CustomerOrder[]> response = restTemplate.getForEntity(url+"customerOrder/", CustomerOrder[].class);
         CustomerOrder[] customerOrder = response.getBody();
         return Arrays.asList(customerOrder);
     }
 
     public CustomerOrder getCustomerOrderById(UUID id){
-        ResponseEntity<CustomerOrder> response = restTemplate.getForEntity(url+"customerorder/"+id, CustomerOrder.class);
+        ResponseEntity<CustomerOrder> response = restTemplate.getForEntity(url+"customerOrder/"+id, CustomerOrder.class);
         return response.getBody();
     }
 
-    public void addCustomerOrder(CustomerOrder customerOrder) {
-        restTemplate.postForObject(url+"customerorder/", customerOrder, CustomerOrder.class);
+    public CustomerOrder addCustomerOrder(CustomerOrder customerOrder) {
+       return restTemplate.postForObject(url+"customerOrder/", customerOrder, CustomerOrder.class);
     }
 
     public void updateCustomerOrder(CustomerOrder order){
-        restTemplate.put(url+"customerorder/"+order.getOrderId(),order,CustomerOrder.class);
+        restTemplate.put(url+"customerOrder/"+order.getOrderId(),order,CustomerOrder.class);
     }
 //----------------OrderItem----------------------------------------------------------------------------------------
     public List<OrderItem> getOrderItemAll(){
@@ -141,8 +141,12 @@ public class IceFactoryAPIService {
         return response.getBody();
     }
 
-    public void addOrderItem(OrderItem orderItem) {
-        restTemplate.postForObject(url+"orderItem/", orderItem, OrderItem.class);
+    public OrderItem addOrderItem(OrderItem orderItem) {
+       return restTemplate.postForObject(url+"orderItem/", orderItem, OrderItem.class);
+    }
+
+    public void updateOrderItem(OrderItem item){
+        restTemplate.put(url+"orderItem/"+item.getOrderItemId(),item,OrderItem.class);
     }
 //------------------Bill----------------------------------------------------------------------------------------
 
