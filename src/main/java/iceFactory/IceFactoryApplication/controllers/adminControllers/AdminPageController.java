@@ -36,13 +36,9 @@ public class AdminPageController {
             @Override
             public void run() {
                 usernameLabel.setText(accountManage.getCurrentOwner().getUsername());
-
             }
         });
-
-
     }
-
 
 
     @FXML public void handleLogoutBtnOnAction(ActionEvent event) throws IOException {
@@ -74,6 +70,18 @@ public class AdminPageController {
         changePasswordController.setService(service);
         stage.show();
     }
+
+    @FXML public void handletPaperBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/paper.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        PaperController paperController = loader.getController();
+        paperController.setAccountManage(accountManage);
+        paperController.setService(service);
+        stage.show();
+    }
+
 
 
     public void setAccountManage(AccountManagement accountManage) {

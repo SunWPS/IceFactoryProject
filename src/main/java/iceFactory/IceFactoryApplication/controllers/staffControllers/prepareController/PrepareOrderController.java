@@ -57,7 +57,7 @@ public class PrepareOrderController {
 
             }
         });
-        setupOrderProductTable();
+
         prepareFinishBtn.setDisable(true);
 
         orderListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -65,7 +65,7 @@ public class PrepareOrderController {
                 prepareFinishBtn.setDisable(false);
                 CustomerOrder a = (CustomerOrder) newValue;
                 selectedCustomerOrder =  a;
-
+                setupOrderProductTable();
 
             }
 
