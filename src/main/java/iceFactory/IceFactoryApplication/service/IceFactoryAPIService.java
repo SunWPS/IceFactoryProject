@@ -144,7 +144,22 @@ public class IceFactoryAPIService {
     public void addOrderItem(OrderItem orderItem) {
         restTemplate.postForObject(url+"orderItem/", orderItem, OrderItem.class);
     }
+//------------------Bill----------------------------------------------------------------------------------------
 
+    public List<Bill> getBillAll(){
+        ResponseEntity<Bill[]> response = restTemplate.getForEntity(url+"bill/", Bill[].class);
+        Bill[] bill = response.getBody();
+        return Arrays.asList(bill);
+    }
+
+    public Bill getBillById(UUID id){
+        ResponseEntity<Bill> response = restTemplate.getForEntity(url+"bill/"+id, Bill.class);
+        return response.getBody();
+    }
+
+    public void addBill(Bill bill) {
+        restTemplate.postForObject(url+"bill/", bill, Bill.class);
+    }
 }
 
 
