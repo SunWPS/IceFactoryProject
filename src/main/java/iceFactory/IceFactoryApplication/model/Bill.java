@@ -12,7 +12,7 @@ public class Bill {
 
     public void createBill(CustomerOrder customerOrder){
         for (OrderItem i : customerOrder.getOrderItemList()){
-            totalPrice+=i.getPrice();
+            totalPrice+=i.getPrice()*i.getOrderQuantity();
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         createDate = LocalDateTime.now().format(formatter);

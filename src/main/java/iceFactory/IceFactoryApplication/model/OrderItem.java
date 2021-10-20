@@ -14,9 +14,9 @@ public class OrderItem {
 
     public void setPrice(){
         if(customerOrder.getCustomer().getType().equals(Customer.CustomerType.Delivery.toString())){
-            this.price = product.getPriceDelivery()*orderQuantity;
+            this.price = product.getPriceDelivery();
         } else {
-            this.price = product.getPrice()*orderQuantity;
+            this.price = product.getPrice();
         }
     };
 
