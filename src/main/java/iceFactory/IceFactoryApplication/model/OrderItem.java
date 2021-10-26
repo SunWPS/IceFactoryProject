@@ -20,6 +20,8 @@ public class OrderItem {
         }
     };
 
+    public void addOrderQuantity(int orderQuantity) {this.orderQuantity += orderQuantity;}
+
     public void setCustomerOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
     }
@@ -52,7 +54,6 @@ public class OrderItem {
     public float getPrice() {
         return this.price;
     }
-
 
     public String getPName(){
         return  this.pName;

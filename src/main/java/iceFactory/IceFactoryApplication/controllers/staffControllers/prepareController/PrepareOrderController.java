@@ -35,6 +35,7 @@ public class PrepareOrderController {
     private CustomerOrder selectedCustomerOrder;
     ObservableList<Product> productsData;
     ObservableList<CustomerOrder> customerOrdersData;
+    @FXML private Label orderIdLabel;
 
     @FXML private Button prepareFinishBtn;
     @FXML private TableView orderListTable, stockTable, orderProductTable;
@@ -68,6 +69,7 @@ public class PrepareOrderController {
                 CustomerOrder a = (CustomerOrder) newValue;
                 selectedCustomerOrder =  a;
                 setupOrderProductTable();
+                orderIdLabel.setText(a.getOrderId().toString());
 
             }
 
@@ -160,7 +162,6 @@ public class PrepareOrderController {
         }
         System.out.println(selectedCustomerOrder.getOrderItemList());
     }
-
 
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;

@@ -114,10 +114,23 @@ public class AddOrderController {
                 orderItem.setPName(pName);
                 orderItem.setOrderQuantity(Integer.parseInt(quantity));
                 orderItem.setProduct(service.getProductByPName(pName));
-                orderItemArrayList.add(orderItem);
-                quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
-                productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
-                productTable.getItems().add(orderItem);
+                boolean check = true;
+                for(OrderItem i : orderItemArrayList){
+                    if(i.getPName().equals(pName)){
+                        i.addOrderQuantity(Integer.parseInt(quantity));
+                        check = false;
+                        break;
+                    }
+                }
+
+                if(check){
+                    orderItemArrayList.add(orderItem);
+                    quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
+                    productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
+                    productTable.getItems().add(orderItem);
+                }
+                productTable.refresh();
+
             } catch (IllegalArgumentException e) {
                 addErrorLabel.setText("Please add quantity");
             }
