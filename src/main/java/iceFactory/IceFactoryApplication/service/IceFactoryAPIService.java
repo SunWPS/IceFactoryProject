@@ -92,6 +92,9 @@ public class IceFactoryAPIService {
     public void addCustomer(Customer customer){
         restTemplate.postForObject(url+"customer/", customer, Customer.class);
     }
+    public void deleteCustomer(UUID customerId) {
+        restTemplate.delete(url+"customer/"+customerId);
+    }
 
 //-------------Product------------------------------------------------------------------------------------------------
 

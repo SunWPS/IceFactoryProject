@@ -1,5 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
+import iceFactory.IceFactoryApplication.controllers.adminControllers.ConfirmDeleteAccountPageController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController.AddCustomerController;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
@@ -114,6 +115,12 @@ public class CustomerPage {
         stage.showAndWait();
         createCustomerListTable();
         customerTable.refresh();
+    }
+    @FXML public void handleDeleteBtnOnAction(ActionEvent event)throws IOException{
+        if(selectedCustomer!=null){
+            service.deleteCustomer(selectedCustomer.getCustomerId());
+            createCustomerListTable();
+        }
     }
 
     public void setAccountManage(AccountManagement accountManage) {
