@@ -42,7 +42,6 @@ public class OrderItem {
         this.orderQuantity = orderQuantity;
     }
 
-
     public void setOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
     }
@@ -68,11 +67,12 @@ public class OrderItem {
         return customerOrder;
     }
 
+    public float getSumPrice(){
+        return this.price * this.orderQuantity;
+    }
+
     public int getMissing(int stock){
-        if(orderQuantity - stock >0)
-            return  orderQuantity-stock;
-        else
-            return 0;
+        return Math.max(orderQuantity - stock, 0);
     }
 
 

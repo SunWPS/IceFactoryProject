@@ -3,6 +3,7 @@ package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareCon
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
+import iceFactory.IceFactoryApplication.model.OrderItem;
 import iceFactory.IceFactoryApplication.model.Product;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
@@ -70,9 +71,7 @@ public class PrepareOrderController {
                 selectedCustomerOrder =  a;
                 setupOrderProductTable();
                 orderIdLabel.setText(a.getOrderId().toString());
-
             }
-
         });
     }
 
@@ -150,17 +149,14 @@ public class PrepareOrderController {
     }
 
     public void setupOrderProductTable(){
-        try {
-            productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
-            quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
-            missColumn.setCellValueFactory(new PropertyValueFactory<>("missing"));
-            orderProductTable.getItems().addAll(selectedCustomerOrder.getOrderItemList());
-            orderProductTable.refresh();
-        }
-        catch (NullPointerException e){
-            System.out.println("______________________sdada");
-        }
-        System.out.println(selectedCustomerOrder.getOrderItemList());
+        productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
+        missColumn.setCellValueFactory(new PropertyValueFactory<>("missing"));
+
+        List<OrderItem> itemsList = selectedCustomerOrder.getOrderItemList();
+        ObservableList<OrderItem> itemsData = FXCollections.observableList(itemsList);
+        orderProductTable.setItems(itemsData);
+        orderProductTable.refresh();
     }
 
     public void setAccountManage(AccountManagement accountManage) {

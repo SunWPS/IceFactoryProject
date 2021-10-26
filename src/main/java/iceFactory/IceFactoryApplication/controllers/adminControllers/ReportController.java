@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class PaperController {
+public class ReportController {
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private CustomerOrder selectedCustomerOrder;

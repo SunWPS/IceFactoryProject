@@ -50,7 +50,7 @@
          </graphic>
       </Button>
       <Pane layoutX="907.0" layoutY="249.0" prefHeight="276.0" prefWidth="301.0" styleClass="paneShadow" stylesheets="@../../StyleSheet/style.css" />
-      <Button id="changePasswordBtn" fx:id="paperBtn" layoutX="907.0" layoutY="243.0" mnemonicParsing="false" onAction="#handletPaperBtnOnAction" prefHeight="276.0" prefWidth="293.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
+      <Button id="changePasswordBtn" fx:id="reportBtn" layoutX="907.0" layoutY="243.0" mnemonicParsing="false" onAction="#handletReportBtnOnAction" prefHeight="276.0" prefWidth="293.0" styleClass="normalBtn" stylesheets="@../../StyleSheet/style.css">
          <graphic>
             <ImageView fitHeight="224.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
                <image>

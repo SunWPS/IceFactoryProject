@@ -62,15 +62,14 @@ public class AddOrderController {
                 selectedOrderItem =  a;
             }
         });
-
-
     }
+
     public void setUpCustomerLabel(){
             customerId.setText(selectedCustomer.getCustomerId().toString());
             customerName.setText(selectedCustomer.getName());
     }
-    public void setUpComboBox(){
 
+    public void setUpComboBox(){
         productComboBox.getItems().addAll("น้ำแข็งหลอดเล็ก", "น้ำแข็งหลอดใหญ่", "น้ำแข็งป่น", "น้ำแข็งแพ็ค");
         productComboBox.setValue("น้ำแข็งหลอดเล็ก");
     }

@@ -1,23 +1,15 @@
 package iceFactory.IceFactoryApplication.controllers.adminControllers;
 
 import iceFactory.IceFactoryApplication.controllers.shareControllers.ChangePasswordController;
-import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
-import iceFactory.IceFactoryApplication.model.Owner;
-import iceFactory.IceFactoryApplication.model.Staff;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -71,14 +63,14 @@ public class AdminPageController {
         stage.show();
     }
 
-    @FXML public void handletPaperBtnOnAction(ActionEvent event) throws IOException {
+    @FXML public void handletReportBtnOnAction(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/paper.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/report.fxml"));
         stage.setScene(new Scene(loader.load(), 1354, 756));
-        PaperController paperController = loader.getController();
-        paperController.setAccountManage(accountManage);
-        paperController.setService(service);
+        ReportController reportController = loader.getController();
+        reportController.setAccountManage(accountManage);
+        reportController.setService(service);
         stage.show();
     }
 
