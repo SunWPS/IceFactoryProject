@@ -113,7 +113,6 @@ public class AddOrderController {
                     addErrorLabel.setText("quantity is too much!");
                 }
                 OrderItem orderItem = new OrderItem();
-                orderItem.setPName(pName);
                 orderItem.setOrderQuantity(Integer.parseInt(quantity));
                 orderItem.setProduct(service.getProductByPName(pName));
                 boolean check = true;

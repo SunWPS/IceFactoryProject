@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public class CreateBill {
 
-    public static void createBill(CustomerOrder order, float total, String date, Stage stage) throws IOException {
+    public static void createBill(CustomerOrder order, float total, String date, String billId,Stage stage) throws IOException {
         String thai = "fonts/tahoma.ttf";
         PdfFont thfont = PdfFontFactory.createFont(thai, PdfEncodings.IDENTITY_H, true);
 
@@ -76,13 +76,13 @@ public class CreateBill {
 
         customerInfomation.addCell(new Cell().add("ชื่อ:").setBorder(Border.NO_BORDER).setFontSize(9f));
         customerInfomation.addCell(new Cell().add(order.getCustomerName()).setBorder(Border.NO_BORDER).setFontSize(9f));
-        customerInfomation.addCell(new Cell().add("หมายเลขบิล:").setBorder(Border.NO_BORDER).setFontSize(9f));
+        customerInfomation.addCell(new Cell().add("หมายเลขออเดอร์:").setBorder(Border.NO_BORDER).setFontSize(9f));
         customerInfomation.addCell(new Cell().add(order.getOrderId().toString()).setBorder(Border.NO_BORDER).setFontSize(9f));
 
+        customerInfomation.addCell(new Cell().add("หมายเลขบิล:").setBorder(Border.NO_BORDER).setFontSize(9f));
+        customerInfomation.addCell(new Cell().add(billId).setBorder(Border.NO_BORDER).setFontSize(9f));
         customerInfomation.addCell(new Cell().add("วันที่พิมพ์:").setBorder(Border.NO_BORDER).setFontSize(9f));
         customerInfomation.addCell(new Cell().add(date).setBorder(Border.NO_BORDER).setFontSize(9f));
-        customerInfomation.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setFontSize(9f));
-        customerInfomation.addCell(new Cell().add("").setBorder(Border.NO_BORDER).setFontSize(9f));
 
         document.add(table);
         document.add(new Paragraph("\n"));
@@ -153,6 +153,5 @@ public class CreateBill {
         );
         return itemInfomation;
     }
-
 
 }

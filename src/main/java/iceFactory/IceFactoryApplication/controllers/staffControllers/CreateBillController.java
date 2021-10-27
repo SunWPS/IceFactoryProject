@@ -1,6 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import iceFactory.IceFactoryApplication.model.Bill;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.model.OrderItem;
@@ -89,9 +90,24 @@ public class CreateBillController {
     public void handleCreateBillOnAction(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        CreateBill.createBill(selectedCustomerOrder, totalPrice, dtf.format(now), stage);
+        String createDate = dtf.format(now);
+        UUID billId = UUID.randomUUID();
+        try {
+            CreateBill.createBill(selectedCustomerOrder, totalPrice, createDate, "billId.toString()", stage);
+            Bill bill = new Bill();
+        } catch (Exception e){
+            //
+        }
+
+//        bill.setBillId(billId);
+//        bill.setCreateDate(createDate);
+//        bill.setOrder(selectedCustomerOrder);
+//        bill.setTotalPrice(totalPrice);
+//
+//        service.addBill(bill);
     }
 
     private void showCustomerOrder(){

@@ -9,8 +9,10 @@ public class OrderItem {
     private int orderQuantity;
     private float price;
     private CustomerOrder customerOrder;
-    private String pName;
 
+    public void increasePrice(float price){
+        this.price += price;
+    }
 
     public void setPrice(){
         if(customerOrder.getCustomer().getType().equals(Customer.CustomerType.Delivery.toString())){
@@ -57,7 +59,6 @@ public class OrderItem {
     public String getPName(){
         return  product.getPName();
     }
-    public void setPName(String name) {this.pName = name;}
 
     public UUID getOrderItemId() {
         return orderItemId;

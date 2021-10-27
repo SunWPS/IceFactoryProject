@@ -55,7 +55,7 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Button fx:id="createBillBtn" layoutX="979.0" layoutY="652.0" mnemonicParsing="false" onAction="#handleCreateBillOnAction" prefHeight="76.0" prefWidth="186.0" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="สร้าง Bill" textFill="WHITE">
+      <Button fx:id="createBillBtn" layoutX="979.0" layoutY="668.0" mnemonicParsing="false" onAction="#handleCreateBillOnAction" prefHeight="64.0" prefWidth="184.0" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="สร้าง Bill" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

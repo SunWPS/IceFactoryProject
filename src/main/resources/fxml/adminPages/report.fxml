@@ -8,8 +8,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="756.0" prefWidth="1354.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.adminControllers.ReportController">
    <children>
@@ -18,28 +18,18 @@
             <Image url="@../../ImageAndIcon/adminAndStaffPageImage/paperBg/Artboard-18.jpg" />
          </image>
       </ImageView>
-      <TableView fx:id="orderListTable" layoutX="46.0" layoutY="232.0" prefHeight="381.0" prefWidth="1275.0">
-         <columns>
-            <TableColumn fx:id="timeColumn" prefWidth="144.0" text="เวลาที่สั่ง" />
-            <TableColumn fx:id="orderIdColumn" minWidth="0.0" prefWidth="277.0" text="รหัสสินค้า" />
-            <TableColumn fx:id="customerColumn" prefWidth="230.0" text="ชื่อลูกค้า" />
-            <TableColumn fx:id="customerTypeColumn" prefWidth="131.0" text="ประเภทลูกค้า" />
-            <TableColumn fx:id="phoneColumn" prefWidth="212.0" text="เบอร์โทร" />
-            <TableColumn fx:id="addressColumn" prefWidth="377.0" text="ที่อยู่" />
-         </columns>
-      </TableView>
-      <DatePicker fx:id="datePicker" layoutX="382.0" layoutY="637.0" prefHeight="42.0" prefWidth="303.0" />
-      <Button fx:id="printBtn" layoutX="778.0" layoutY="629.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="220.0" styleClass="greenBtn" stylesheets="@../../StyleSheet/style.css" text="ปริ้นรายงาน" textFill="WHITE">
+      <DatePicker fx:id="datePicker" layoutX="877.0" layoutY="531.0" prefHeight="42.0" prefWidth="303.0" />
+      <Button fx:id="saveBtn" layoutX="949.0" layoutY="658.0" mnemonicParsing="false" onAction="#handleSaveBtnOnAction" prefHeight="57.0" prefWidth="220.0" styleClass="greenBtn" stylesheets="@../../StyleSheet/style.css" text="save รายงาน" textFill="WHITE">
          <font>
             <Font name="System Bold" size="27.0" />
          </font>
       </Button>
-      <Label layoutX="325.0" layoutY="642.0" prefHeight="21.0" prefWidth="158.0" text="วันที่:" textFill="#17075e">
+      <Label layoutX="803.0" layoutY="536.0" prefHeight="21.0" prefWidth="158.0" text="วันที่:" textFill="#17075e">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="errorLabel" layoutX="684.0" layoutY="703.0" text="Label" textFill="RED">
+      <Label fx:id="errorLabel" layoutX="877.0" layoutY="589.0" text="Label" textFill="RED">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
@@ -53,5 +43,79 @@
             </ImageView>
          </graphic>
       </Button>
+      <TableView fx:id="dItemsTable" layoutX="101.0" layoutY="276.0" prefHeight="171.0" prefWidth="511.0">
+         <columns>
+            <TableColumn fx:id="dProductColumn" prefWidth="177.0" text="สินค้า" />
+            <TableColumn fx:id="dQuantityColumn" minWidth="0.0" prefWidth="82.0" text="จำนวน" />
+            <TableColumn fx:id="dPriceColumn" prefWidth="127.0" text="ราคา/หน่วย" />
+            <TableColumn fx:id="dSumColumn" prefWidth="124.0" text="รวม" />
+         </columns>
+      </TableView>
+      <TableView fx:id="pItemsTable" layoutX="101.0" layoutY="534.0" prefHeight="179.0" prefWidth="511.0">
+         <columns>
+            <TableColumn fx:id="pProductColumn" prefWidth="177.0" text="สินค้า" />
+            <TableColumn fx:id="pQuantityColumn" minWidth="0.0" prefWidth="82.0" text="จำนวน" />
+            <TableColumn fx:id="pPriceColumn" prefWidth="127.0" text="ราคา/หน่วย" />
+            <TableColumn fx:id="pSumColumn" prefWidth="124.0" text="รวม" />
+         </columns>
+      </TableView>
+      <TableView fx:id="sItemsTable" layoutX="803.0" layoutY="276.0" prefHeight="179.0" prefWidth="511.0">
+         <columns>
+            <TableColumn fx:id="sProductColumn" prefWidth="285.0" text="สินค้า" />
+            <TableColumn fx:id="sQuantityColumn" minWidth="0.0" prefWidth="86.0" text="จำนวน" />
+            <TableColumn fx:id="sSumColumn" prefWidth="139.0" text="รวม" />
+         </columns>
+      </TableView>
+      <Pane layoutX="710.0" layoutY="272.0" prefHeight="457.0" prefWidth="6.0" style="-fx-background-color: #091F62;" />
+      <Label layoutX="101.0" layoutY="244.0" text="รายการสินค้าแบบจัดส่ง" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="501.0" text="รายการสินค้าแบบซื้อหน้าโรงงาน" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="803.0" layoutY="244.0" text="สรุปรวม" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="searchBtn" layoutX="1196.0" layoutY="523.0" mnemonicParsing="false" onAction="#handleSearchBtnOnAction" prefHeight="57.0" prefWidth="88.0" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="ค้นหา" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Label layoutX="383.0" layoutY="455.0" text="ราคาทั้งหมด:" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="390.0" layoutY="715.0" text="ราคาทั้งหมด:" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="1073.0" layoutY="460.0" text="ราคาทั้งหมด:" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="dTotalLabel" layoutX="497.0" layoutY="455.0" prefHeight="28.0" prefWidth="114.0" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="pTotalLabel" layoutX="505.0" layoutY="715.0" prefHeight="28.0" prefWidth="114.0" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="sTotalLabel" layoutX="1187.0" layoutY="460.0" prefHeight="28.0" prefWidth="114.0" textFill="#091f62">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
