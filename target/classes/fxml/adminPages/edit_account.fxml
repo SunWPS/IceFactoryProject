@@ -56,12 +56,12 @@
                 <Font size="18.0" />
             </font>
         </TextField>
-        <Button fx:id="submitStaffAccountBtn" layoutX="753.0" layoutY="301.0" mnemonicParsing="false" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="Submit" textFill="WHITE">
+        <Button fx:id="submitBtn" layoutX="753.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleSubmitBtnOnAction" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="Submit" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
         </Button>
-        <Label fx:id="editAccountErrorLabel" layoutX="737.0" layoutY="379.0" prefHeight="21.0" prefWidth="165.0" text="error" textAlignment="CENTER" textFill="RED">
+        <Label fx:id="editAccountErrorLabel" layoutX="737.0" layoutY="379.0" prefHeight="21.0" prefWidth="165.0" textAlignment="CENTER" textFill="RED">
             <font>
                 <Font name="System Bold Italic" size="15.0" />
             </font></Label>

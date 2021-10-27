@@ -38,11 +38,9 @@ public class StaffListPageControllers {
         });
         if(selectedStaff==null) {editBtn.setDisable(true);
             deleteAccountBtn.setDisable(true);}
-
-
-
     }
-// creat staff แล้ว ยังไม่อัพเดท
+
+
     public void createStaffListTable(){
         ObservableList<Staff> staffObservableList = FXCollections.observableArrayList(accountManage.getStaffMap().values());
         nameCol.setCellValueFactory(new PropertyValueFactory<Staff,String>("firstName"));
@@ -123,9 +121,13 @@ public class StaffListPageControllers {
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
+        EditAccountController editAccountController = loader.getController();
+        editAccountController.setAccountManage(accountManage);
+        editAccountController.setService(service);
+        editAccountController.setStaff(selectedStaff);
         stage.showAndWait();
-        selectedStaff=null;
-        editBtn.setDisable(true);
+        selectedStaff = null;
+        createStaffListTable();
     }
 
     public void setAccountManage(AccountManagement accountManage) {
