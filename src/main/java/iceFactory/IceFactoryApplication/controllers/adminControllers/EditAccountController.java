@@ -10,8 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-import java.util.List;
 
 
 public class EditAccountController {
@@ -45,11 +45,11 @@ public class EditAccountController {
             staff.setLastName(staffLnameTextField.getText());
             staff.setPhoneNumber(staffPhoneTextField.getText());
             staff.setAddress(staffAddressTextArea.getText());
-
             service.updateStaff(staff);
             accountManage.getStaffMap().remove(staff.getUsername());
             accountManage.getStaffMap().put(staff.getUsername(), staff);
-
+            Stage stage = (Stage) submitBtn.getScene().getWindow();
+            stage.close();
         }
     }
 

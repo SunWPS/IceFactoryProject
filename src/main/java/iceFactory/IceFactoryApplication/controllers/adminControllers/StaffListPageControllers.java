@@ -36,8 +36,6 @@ public class StaffListPageControllers {
                 createStaffListTable();
             }
         });
-        if(selectedStaff==null) {editBtn.setDisable(true);
-            deleteAccountBtn.setDisable(true);}
     }
 
 
@@ -50,6 +48,9 @@ public class StaffListPageControllers {
         addrCol.setCellValueFactory(new PropertyValueFactory<Staff,String>("address"));
         loginTimeCol.setCellValueFactory(new PropertyValueFactory<Staff,String>("dateTime"));
         staffTableView.setItems(staffObservableList);
+        deleteAccountBtn.setDisable(true);
+        editBtn.setDisable(true);
+        selectedStaff=null;
         staffTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 Staff a = (Staff) newValue;
@@ -106,13 +107,14 @@ public class StaffListPageControllers {
         confirmDeleteAccountPageController.setService(service);
         confirmDeleteAccountPageController.setSelectedStaff(selectedStaff);
         stage.showAndWait();
-        selectedStaff=null;
-        deleteAccountBtn.setDisable(true);
+
+
         createStaffListTable();
         }
     }
 
     @FXML public void handleEditBtnOnAction(ActionEvent event) throws IOException {
+        if(selectedStaff!=null){
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/edit_account.fxml"));
         stage.setScene(new Scene(loader.load(), 935, 587));
@@ -126,8 +128,9 @@ public class StaffListPageControllers {
         editAccountController.setService(service);
         editAccountController.setStaff(selectedStaff);
         stage.showAndWait();
-        selectedStaff = null;
+        staffTableView.refresh();
         createStaffListTable();
+        }
     }
 
     public void setAccountManage(AccountManagement accountManage) {
