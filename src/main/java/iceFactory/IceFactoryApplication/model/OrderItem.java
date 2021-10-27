@@ -55,7 +55,7 @@ public class OrderItem {
     }
 
     public String getPName(){
-        return  this.pName;
+        return  product.getPName();
     }
     public void setPName(String name) {this.pName = name;}
 
@@ -71,8 +71,8 @@ public class OrderItem {
         return this.price * this.orderQuantity;
     }
 
-    public int getMissing(int stock){
-        return Math.max(orderQuantity - stock, 0);
+    public int getMissing(){
+        return Math.max(this.orderQuantity - product.getQuantity(), 0);
     }
 
 

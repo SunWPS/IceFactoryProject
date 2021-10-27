@@ -106,6 +106,8 @@ public class PrepareOrderController {
         try{
         selectedCustomerOrder.PrepareOrder();
         service.updateCustomerOrder(selectedCustomerOrder);
+        for(OrderItem i : selectedCustomerOrder.getOrderItemList())
+            service.updateProduct(i.getProduct());
         }
         catch (IllegalArgumentException e){
             needMoreLabel.setText("Need More Item");
@@ -114,6 +116,9 @@ public class PrepareOrderController {
             selectedCustomerOrder = null;
         }
         showCustomerOrder();
+        showProduct();
+        orderIdLabel.setText("");
+        orderProductTable.getItems().clear();
 
     }
 

@@ -109,6 +109,9 @@ public class AddOrderController {
         try {
                 String pName = productComboBox.getValue();
                 String quantity = quantityTextField.getText();
+                if(Integer.parseInt(quantity) >200){
+                    addErrorLabel.setText("quantity is too much!");
+                }
                 OrderItem orderItem = new OrderItem();
                 orderItem.setPName(pName);
                 orderItem.setOrderQuantity(Integer.parseInt(quantity));
