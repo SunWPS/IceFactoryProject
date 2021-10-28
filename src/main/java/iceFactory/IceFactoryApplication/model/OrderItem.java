@@ -15,7 +15,7 @@ public class OrderItem {
     }
 
     public void setPrice(){
-        if(customerOrder.getCustomer().getType().equals(Customer.CustomerType.Delivery.toString())){
+        if(customerOrder.getCustomer().getType().equalsIgnoreCase("delivery")){
             this.price = product.getPriceDelivery();
         } else {
             this.price = product.getPrice();
