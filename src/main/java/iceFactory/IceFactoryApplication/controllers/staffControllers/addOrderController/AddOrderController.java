@@ -109,28 +109,38 @@ public class AddOrderController {
         try {
                 String pName = productComboBox.getValue();
                 String quantity = quantityTextField.getText();
-                if(Integer.parseInt(quantity) >200){
-                    addErrorLabel.setText("quantity is too much!");
-                }
-                OrderItem orderItem = new OrderItem();
-                orderItem.setOrderQuantity(Integer.parseInt(quantity));
-                orderItem.setProduct(service.getProductByPName(pName));
-                boolean check = true;
-                for(OrderItem i : orderItemArrayList){
-                    if(i.getPName().equals(pName)){
-                        i.addOrderQuantity(Integer.parseInt(quantity));
-                        check = false;
-                        break;
-                    }
-                }
 
-                if(check){
-                    orderItemArrayList.add(orderItem);
-                    quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
-                    productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
-                    productTable.getItems().add(orderItem);
-                }
-                productTable.refresh();
+
+                    addErrorLabel.setText("");
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.setOrderQuantity(Integer.parseInt(quantity));
+                    orderItem.setProduct(service.getProductByPName(pName));
+                    boolean check = true;
+                    if(Integer.parseInt(quantity) > 200){
+                        addErrorLabel.setText("Order quantity is too much!");
+                        return;
+                    }
+                    for(OrderItem i : orderItemArrayList){
+                        if(i.getPName().equals(pName)){
+                            if(i.getOrderQuantity() + Integer.parseInt(quantity) > 200){
+                                addErrorLabel.setText("Order quantity is too much!");
+                                return;
+                            }
+                                i.addOrderQuantity(Integer.parseInt(quantity));
+                                check = false;
+                                break;
+                        }
+                    }
+
+                    if(check){
+                        orderItemArrayList.add(orderItem);
+                        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
+                        productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
+                        productTable.getItems().add(orderItem);
+                    }
+                    productTable.refresh();
+
+
 
             } catch (IllegalArgumentException e) {
                 addErrorLabel.setText("Please add quantity");
@@ -173,6 +183,7 @@ public class AddOrderController {
     @FXML public void handleDeleteBtnOnAction(ActionEvent event){
         orderItemArrayList.remove(selectedOrderItem);
         productTable.getItems().remove(selectedOrderItem);
+
     }
 
 

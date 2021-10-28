@@ -46,7 +46,7 @@
          <font>
             <Font name="System Bold" size="17.0" />
          </font></RadioButton>
-      <Label fx:id="errorLabel" layoutX="876.0" layoutY="469.0" prefHeight="21.0" prefWidth="419.0" text="error" textAlignment="CENTER" textFill="RED">
+      <Label fx:id="errorLabel" layoutX="876.0" layoutY="469.0" prefHeight="21.0" prefWidth="419.0" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font></Label>

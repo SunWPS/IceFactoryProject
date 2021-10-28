@@ -34,6 +34,7 @@ public class PrepareOrderController {
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private CustomerOrder selectedCustomerOrder;
+    List<CustomerOrder> customerOrderList;
     ObservableList<Product> productsData;
     ObservableList<CustomerOrder> customerOrdersData;
     @FXML private Label orderIdLabel;
@@ -69,7 +70,7 @@ public class PrepareOrderController {
                 prepareFinishBtn.setDisable(false);
                 CustomerOrder a = (CustomerOrder) newValue;
                 selectedCustomerOrder =  a;
-                setupOrderProductTable();
+                showOrderProductTable();
                 orderIdLabel.setText(a.getOrderId().toString());
             }
         });
@@ -91,7 +92,7 @@ public class PrepareOrderController {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/prepare/update_stock.fxml"));
         stage.setScene(new Scene(loader.load(), 935, 587));
-        stage.setTitle("Updata Stock");
+        stage.setTitle("Update Stock");
         stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -100,12 +101,23 @@ public class PrepareOrderController {
         updateStockController.setService(service);
         stage.showAndWait();
         showProduct();
+
+        showCustomerOrder();
+        try{
+        for(CustomerOrder order : customerOrderList){
+            if(order.getOrderId().equals(selectedCustomerOrder.getOrderId()))
+                selectedCustomerOrder = order;
+        }
+        showOrderProductTable();}
+        catch (NullPointerException e){
+            
+        }
     }
 
     @FXML public void handlePrepareFinishBtnOnAction(ActionEvent event)throws IOException{
         try{
-        selectedCustomerOrder.PrepareOrder();
-        service.updateCustomerOrder(selectedCustomerOrder);
+            selectedCustomerOrder.PrepareOrder();
+            service.updateCustomerOrder(selectedCustomerOrder);
         for(OrderItem i : selectedCustomerOrder.getOrderItemList())
             service.updateProduct(i.getProduct());
         }
@@ -125,22 +137,22 @@ public class PrepareOrderController {
 
     private void showCustomerOrder(){
 
-            List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();
+        customerOrderList = service.getCustomerOrderAll();
 
-            timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-            orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
-            customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-            customerTypeColumn.setCellValueFactory(new PropertyValueFactory<>("customerType"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+        orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
+        customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        customerTypeColumn.setCellValueFactory(new PropertyValueFactory<>("customerType"));
 
-            ArrayList<CustomerOrder> ordersThatNotPrepared = new ArrayList<>();
-            for(CustomerOrder order : customerOrderList){
-                if(order.getOrderStatus().equals(CustomerOrder.Status.PrepareProduct.toString()))
+        ArrayList<CustomerOrder> ordersThatNotPrepared = new ArrayList<>();
+        for(CustomerOrder order : customerOrderList){
+            if(order.getOrderStatus().equals(CustomerOrder.Status.PrepareProduct.toString()))
                     ordersThatNotPrepared.add(order);
-            }
-            List<CustomerOrder> sorted = (ArrayList<CustomerOrder>)ordersThatNotPrepared.clone();
-            sorted.sort(Comparator.comparing(CustomerOrder::getOrderDate));
-            customerOrdersData = FXCollections.observableList(sorted);
-            orderListTable.setItems(customerOrdersData);
+        }
+        List<CustomerOrder> sorted = (ArrayList<CustomerOrder>)ordersThatNotPrepared.clone();
+        sorted.sort(Comparator.comparing(CustomerOrder::getOrderDate));
+        customerOrdersData = FXCollections.observableList(sorted);
+        orderListTable.setItems(customerOrdersData);
 
 
     }
@@ -153,7 +165,7 @@ public class PrepareOrderController {
         stockTable.setItems(productsData);
     }
 
-    public void setupOrderProductTable(){
+    public void showOrderProductTable(){
         productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("orderQuantity"));
         missColumn.setCellValueFactory(new PropertyValueFactory<>("missing"));
