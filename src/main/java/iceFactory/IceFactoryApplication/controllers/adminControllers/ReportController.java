@@ -79,7 +79,7 @@ public class ReportController {
 
             dTotal = SummaryOrderItems.totalPrice(deliveryItems);
             pTotal = SummaryOrderItems.totalPrice(pickupItems);
-            sTotal = SummaryOrderItems.totalPrice(summaryItems);
+            sTotal = SummaryOrderItems.totalSummaryPrice(summaryItems);
 
             dTotalLabel.setText("" + dTotal);
             pTotalLabel.setText("" + pTotal);

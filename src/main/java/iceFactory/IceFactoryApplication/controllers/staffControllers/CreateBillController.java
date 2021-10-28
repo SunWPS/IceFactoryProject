@@ -95,19 +95,20 @@ public class CreateBillController {
         LocalDateTime now = LocalDateTime.now();
         String createDate = dtf.format(now);
         UUID billId = UUID.randomUUID();
+
         try {
-            CreateBill.createBill(selectedCustomerOrder, totalPrice, createDate, "billId.toString()", stage);
+            CreateBill.createBill(selectedCustomerOrder, totalPrice, createDate, billId.toString(), stage);
             Bill bill = new Bill();
+            bill.setBillId(billId);
+            bill.setCreateDate(createDate);
+            bill.setOrder(selectedCustomerOrder);
+            bill.setTotalPrice(totalPrice);
+
+            service.addBill(bill);
+
         } catch (Exception e){
             //
         }
-
-//        bill.setBillId(billId);
-//        bill.setCreateDate(createDate);
-//        bill.setOrder(selectedCustomerOrder);
-//        bill.setTotalPrice(totalPrice);
-//
-//        service.addBill(bill);
     }
 
     private void showCustomerOrder(){

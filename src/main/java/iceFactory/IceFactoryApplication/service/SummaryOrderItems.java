@@ -66,7 +66,7 @@ public class SummaryOrderItems {
                     OrderItem newItem = new OrderItem();
                     newItem.setProduct(orderItem.getProduct());
                     newItem.setOrderQuantity(orderItem.getOrderQuantity());
-                    newItem.increasePrice(orderItem.getPrice());
+                    newItem.increasePrice(orderItem.getSumPrice());
                     filterItems.add(newItem);
                 }
             }
@@ -78,6 +78,13 @@ public class SummaryOrderItems {
         float total = 0;
         for(OrderItem item : orderItems)
             total += item.getSumPrice();
+        return total;
+    }
+
+    public static float totalSummaryPrice(List<OrderItem> orderItems){
+        float total = 0;
+        for(OrderItem item: orderItems)
+            total += item.getPrice();
         return total;
     }
 
