@@ -12,7 +12,8 @@ public class SummaryOrderItems {
     public static List<OrderItem> summaryByTypeAndDate(List<CustomerOrder> orderList, String type, String date){
         List<CustomerOrder> filterOrder = new ArrayList<>();
         for(CustomerOrder order : orderList){
-            if(order.getCustomer().getType().equals(type) && order.getOrderDate().substring(0, 10).equals(date)){
+            if(order.getCustomer().getType().equals(type) && order.getOrderDate().substring(0, 10).equals(date)
+            && order.getOrderStatus().equals("CloseOrder")){
                 filterOrder.add(order);
             }
         }
@@ -44,7 +45,7 @@ public class SummaryOrderItems {
     public static List<OrderItem> summaryByDate(List<CustomerOrder> orderList, String date){
         List<CustomerOrder> filterOrder = new ArrayList<>();
         for(CustomerOrder order : orderList){
-            if(order.getOrderDate().substring(0, 10).equals(date)){
+            if(order.getOrderDate().substring(0, 10).equals(date) && order.getOrderStatus().equals("CloseOrder")){
                 filterOrder.add(order);
             }
         }
