@@ -16,11 +16,12 @@ import java.io.IOException;
 
 
 public class AdminPageController {
-    @FXML private Label usernameLabel;
-    @FXML private Button staffListBtn, changePasswordBtn, logoutBtn;
 
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
+
+    @FXML private Label usernameLabel;
+
 
     @FXML public  void initialize()  {
 
@@ -31,7 +32,6 @@ public class AdminPageController {
             }
         });
     }
-
 
     @FXML public void handleLogoutBtnOnAction(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();
@@ -73,8 +73,6 @@ public class AdminPageController {
         reportController.setService(service);
         stage.show();
     }
-
-
 
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;

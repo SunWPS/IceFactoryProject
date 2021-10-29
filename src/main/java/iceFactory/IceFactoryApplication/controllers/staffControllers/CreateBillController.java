@@ -1,6 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import iceFactory.IceFactoryApplication.model.Bill;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
@@ -21,7 +21,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.springframework.core.annotation.Order;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -29,6 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CreateBillController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private CustomerOrder selectedCustomerOrder;

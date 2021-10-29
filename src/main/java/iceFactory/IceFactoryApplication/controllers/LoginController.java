@@ -3,7 +3,6 @@ package iceFactory.IceFactoryApplication.controllers;
 import iceFactory.IceFactoryApplication.config.ComponentConfig;
 import iceFactory.IceFactoryApplication.controllers.adminControllers.AdminPageController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
-import iceFactory.IceFactoryApplication.model.Staff;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.event.ActionEvent;
@@ -25,14 +24,13 @@ import java.io.IOException;
 @Component
 public class LoginController {
 
-    @FXML private Button loginBtn;
+    private AccountManagement accountManage;
+    private IceFactoryAPIService service ;
+
     @FXML private RadioButton ownerBtn;
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Label errorLabel;
-
-    private AccountManagement accountManage;
-    private IceFactoryAPIService service ;
 
 
     @FXML public  void initialize()  {
@@ -41,22 +39,22 @@ public class LoginController {
         service = context.getBean(IceFactoryAPIService.class);
         accountManage.setOwnerMapFromList(service.getOwnerAll());
         accountManage.setStaffMapFromList(service.getStaffAll());
-
-
     }
+
     @FXML public void handleLoginBtnOnAction(ActionEvent event) throws IOException{
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         if(ownerBtn.isSelected()){
             try{
-            accountManage.checkOwnerAccount(usernameField.getText(),passwordField.getText());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/admin_page.fxml"));
-            stage.setScene(new Scene(loader.load(), 1354, 756));
-            AdminPageController adminPage = loader.getController();
-            adminPage.setAccountManage(accountManage);
-            adminPage.setService(service);
-                System.out.println(accountManage.getCurrentOwner().getUsername());
-            stage.show();}
+                accountManage.checkOwnerAccount(usernameField.getText(),passwordField.getText());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/admin_page.fxml"));
+                stage.setScene(new Scene(loader.load(), 1354, 756));
+                AdminPageController adminPage = loader.getController();
+                adminPage.setAccountManage(accountManage);
+                adminPage.setService(service);
+                    System.out.println(accountManage.getCurrentOwner().getUsername());
+                stage.show();
+            }
             catch (IllegalArgumentException e){
                 errorLabel.setText(e.getMessage()); }
     }
@@ -72,10 +70,8 @@ public class LoginController {
                 stage.show();
             }
             catch (IllegalArgumentException e){
-                errorLabel.setText(e.getMessage()); }
-
+                errorLabel.setText(e.getMessage());
+            }
     }
-
-
 
 }

@@ -21,12 +21,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StaffListPageControllers {
-    @FXML private Button backBtn,deleteAccountBtn,editBtn;
-    @FXML private TableColumn nameCol,lNameCol,usernameCol,phoneCol,addrCol,loginTimeCol;
-    @FXML private TableView staffTableView;
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private Staff selectedStaff=null;
+
+    @FXML private Button deleteAccountBtn,editBtn;
+    @FXML private TableColumn<Staff,String> nameCol,lNameCol,usernameCol,phoneCol,addrCol,loginTimeCol;
+    @FXML private TableView<Staff> staffTableView;
+
 
     @FXML public  void initialize()  {
 
@@ -37,7 +40,6 @@ public class StaffListPageControllers {
             }
         });
     }
-
 
     public void createStaffListTable(){
         ObservableList<Staff> staffObservableList = FXCollections.observableArrayList(accountManage.getStaffMap().values());
@@ -61,7 +63,6 @@ public class StaffListPageControllers {
         });
     }
 
-
     @FXML public void handleBackBtnOnAction(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
@@ -83,7 +84,6 @@ public class StaffListPageControllers {
         stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
-        // load controller
         stage.setResizable(false);
         AddAccountController addAccountController = loader.getController();
         addAccountController.setAccountManage(accountManage);
@@ -94,42 +94,40 @@ public class StaffListPageControllers {
 
     @FXML void handleDeleteAccountBtnOnAction(ActionEvent event)throws IOException{
         if(selectedStaff!=null){
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/confirm_delete.fxml"));
-        stage.setScene(new Scene(loader.load(), 468, 233));
-        stage.setTitle("Delete account");
-        stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
-        stage.centerOnScreen();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        ConfirmDeleteAccountPageController confirmDeleteAccountPageController = loader.getController();
-        confirmDeleteAccountPageController.setAccountManage(accountManage);
-        confirmDeleteAccountPageController.setService(service);
-        confirmDeleteAccountPageController.setSelectedStaff(selectedStaff);
-        stage.showAndWait();
-
-
-        createStaffListTable();
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/confirm_delete.fxml"));
+            stage.setScene(new Scene(loader.load(), 468, 233));
+            stage.setTitle("Delete account");
+            stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
+            stage.centerOnScreen();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            ConfirmDeleteAccountPageController confirmDeleteAccountPageController = loader.getController();
+            confirmDeleteAccountPageController.setAccountManage(accountManage);
+            confirmDeleteAccountPageController.setService(service);
+            confirmDeleteAccountPageController.setSelectedStaff(selectedStaff);
+            stage.showAndWait();
+            createStaffListTable();
         }
     }
 
     @FXML public void handleEditBtnOnAction(ActionEvent event) throws IOException {
         if(selectedStaff!=null){
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/edit_account.fxml"));
-        stage.setScene(new Scene(loader.load(), 935, 587));
-        stage.setTitle("Edit account");
-        stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
-        stage.centerOnScreen();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        EditAccountController editAccountController = loader.getController();
-        editAccountController.setAccountManage(accountManage);
-        editAccountController.setService(service);
-        editAccountController.setStaff(selectedStaff);
-        stage.showAndWait();
-        staffTableView.refresh();
-        createStaffListTable();
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/edit_account.fxml"));
+            stage.setScene(new Scene(loader.load(), 935, 587));
+            stage.setTitle("Edit account");
+            stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
+            stage.centerOnScreen();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            EditAccountController editAccountController = loader.getController();
+            editAccountController.setAccountManage(accountManage);
+            editAccountController.setService(service);
+            editAccountController.setStaff(selectedStaff);
+            stage.showAndWait();
+            staffTableView.refresh();
+            createStaffListTable();
         }
     }
 

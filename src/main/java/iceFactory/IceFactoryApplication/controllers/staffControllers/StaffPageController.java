@@ -18,11 +18,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StaffPageController {
-    @FXML private Label usernameLabel;
-    @FXML private Button changePasswordBtn, logoutBtn;
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
 
+    @FXML private Label usernameLabel;
 
     @FXML public  void initialize()  {
 
@@ -34,8 +34,6 @@ public class StaffPageController {
                 service.updateStaff(accountManage.getCurrentStaff());
             }
         });
-
-
     }
 
     @FXML public void handleLogoutBtnOnAction(ActionEvent event) throws IOException {

@@ -8,13 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class AddAccountController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
+
     @FXML private TextField staffUsernameTextField,staffFnameTextField,staffLnameTextField,staffPhoneTextField;
     @FXML private PasswordField staffPasswordPasswordField, staffConfirmPasswordPasswordField;
     @FXML private TextArea staffAddressTextArea;
     @FXML private Label addAccountErrorLabel;
-    @FXML private Button submitStaffAccountBtn;
+
 
     @FXML public void handleSubmitStaffAccountBtn(ActionEvent event){
         if(!isFieldsEmpty()){
@@ -47,10 +49,9 @@ public class AddAccountController {
     }
 
     @FXML private boolean isFieldsEmpty(){
-        if(staffUsernameTextField.getText().isEmpty()||staffFnameTextField.getText().isEmpty()||staffAddressTextArea.getText().isEmpty()||
-        staffLnameTextField.getText().isEmpty()||staffPasswordPasswordField.getText().isEmpty()||staffConfirmPasswordPasswordField.getText().isEmpty()
-        ||staffPhoneTextField.getText().isEmpty()) return true;
-        else return false;
+        return staffUsernameTextField.getText().isEmpty() || staffFnameTextField.getText().isEmpty() || staffAddressTextArea.getText().isEmpty() ||
+                staffLnameTextField.getText().isEmpty() || staffPasswordPasswordField.getText().isEmpty() || staffConfirmPasswordPasswordField.getText().isEmpty()
+                || staffPhoneTextField.getText().isEmpty();
     }
 
     public void setAccountManage(AccountManagement accountManage) {

@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ReportController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private List<CustomerOrder> orderList;
@@ -38,6 +39,7 @@ public class ReportController {
     @FXML private TableColumn<OrderItem, Float> dPriceColumn, dSumColumn,  pPriceColumn, pSumColumn, sSumColumn;
     @FXML private DatePicker datePicker;
     @FXML private Label errorLabel, dTotalLabel, pTotalLabel, sTotalLabel;
+
 
     @FXML public void initialize(){
         Platform.runLater(new Runnable() {
@@ -88,7 +90,6 @@ public class ReportController {
         }catch (NullPointerException e) {
             errorLabel.setText("please select date");
         }
-
     }
 
     @FXML

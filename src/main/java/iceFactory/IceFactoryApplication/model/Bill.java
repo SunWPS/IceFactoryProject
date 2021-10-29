@@ -1,22 +1,13 @@
 package iceFactory.IceFactoryApplication.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public class Bill {
+
     private UUID billId;
     private String createDate;
     private float totalPrice;
     private CustomerOrder order;
-
-    public void createBill(CustomerOrder customerOrder){
-        for (OrderItem i : customerOrder.getOrderItemList()){
-            totalPrice+=i.getPrice()*i.getOrderQuantity();
-        }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        createDate = LocalDateTime.now().format(formatter);
-    }
 
     public UUID getBillId() {
         return billId;

@@ -1,6 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
-import iceFactory.IceFactoryApplication.controllers.adminControllers.ConfirmDeleteAccountPageController;
+
 import iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController.AddCustomerController;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 public class CustomerPage {
 
@@ -33,14 +34,15 @@ public class CustomerPage {
     ObservableList<Customer> customersData;
     FilteredList<Customer> customersFilteredList;
 
-    @FXML private TableView customerTable;
-    @FXML private TableColumn customerId;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn typeColumn;
-    @FXML private TableColumn phoneColumn;
-    @FXML private TableColumn addressColumn;
+    @FXML private TableView<Customer> customerTable;
+    @FXML private TableColumn<Customer, UUID> customerId;
+    @FXML private TableColumn<Customer, String> nameColumn;
+    @FXML private TableColumn<Customer, String> typeColumn;
+    @FXML private TableColumn<Customer, String> phoneColumn;
+    @FXML private TableColumn<Customer, String> addressColumn;
     @FXML private TextField nameSearch;
     @FXML private Button deleteBtn;
+
 
     @FXML public void initialize(){
         Platform.runLater(new Runnable() {
@@ -59,6 +61,43 @@ public class CustomerPage {
                 selectedCustomer = a;
             }
         });
+    }
+
+    @FXML
+    public void handleBackBtnOnAction(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/staff_page.fxml"));
+        stage.setScene(new Scene(loader.load(), 1354, 756));
+        StaffPageController staffPageController = loader.getController();
+        staffPageController.setAccountManage(accountManage);
+        staffPageController.setService(service);
+        stage.show();
+    }
+
+    @FXML public void handleAddCustomerBtnOnAction(ActionEvent event) throws IOException {
+        deleteBtn.setDisable(true);
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/addOrder/add_customer.fxml"));
+        stage.setScene(new Scene(loader.load(), 935, 587));
+        stage.setTitle("Add customer");
+        stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        AddCustomerController addCustomerController = loader.getController();
+        addCustomerController.setupBackBtn();
+        addCustomerController.setService(service);
+        stage.showAndWait();
+        createCustomerListTable();
+        customerTable.refresh();
+    }
+
+    @FXML public void handleDeleteBtnOnAction(ActionEvent event)throws IOException{
+        if(selectedCustomer!=null){
+            service.deleteCustomer(selectedCustomer.getCustomerId());
+            createCustomerListTable();
+        }
     }
 
     private void createCustomerListTable(){
@@ -83,44 +122,6 @@ public class CustomerPage {
         }));
 
         customerTable.setItems(customersFilteredList);
-    }
-
-
-    @FXML
-    public void handleBackBtnOnAction(ActionEvent event) throws IOException {
-        Button b = (Button) event.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/staff_page.fxml"));
-        stage.setScene(new Scene(loader.load(), 1354, 756));
-        StaffPageController staffPageController = loader.getController();
-        staffPageController.setAccountManage(accountManage);
-        staffPageController.setService(service);
-        stage.show();
-    }
-
-
-    @FXML public void handleAddCustomerBtnOnAction(ActionEvent event) throws IOException {
-        deleteBtn.setDisable(true);
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/staffPages/addOrder/add_customer.fxml"));
-        stage.setScene(new Scene(loader.load(), 935, 587));
-        stage.setTitle("Add customer");
-        stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
-        stage.centerOnScreen();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        AddCustomerController addCustomerController = loader.getController();
-        addCustomerController.setupBackBtn();
-        addCustomerController.setService(service);
-        stage.showAndWait();
-        createCustomerListTable();
-        customerTable.refresh();
-    }
-    @FXML public void handleDeleteBtnOnAction(ActionEvent event)throws IOException{
-        if(selectedCustomer!=null){
-            service.deleteCustomer(selectedCustomer.getCustomerId());
-            createCustomerListTable();
-        }
     }
 
     public void setAccountManage(AccountManagement accountManage) {

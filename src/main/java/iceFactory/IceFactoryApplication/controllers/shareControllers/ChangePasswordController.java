@@ -18,10 +18,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ChangePasswordController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
+
     @FXML private PasswordField oldPassField,newPassField,newCfPassField;
     @FXML private Label errorLabel;
+
 
     @FXML
     public void handleBackBtnOnAction(ActionEvent event) throws IOException {
@@ -44,7 +47,6 @@ public class ChangePasswordController {
             staffPageController.setService(service);
         }
         stage.show();
-
     }
 
     @FXML void handleSubmitBtnOnAction(ActionEvent event) throws IOException {
@@ -61,14 +63,14 @@ public class ChangePasswordController {
         confirmChangePassController.setService(service);
 
         if(!oldPassField.getText().isEmpty()&&!newPassField.getText().isEmpty()&&!newCfPassField.getText().isEmpty()){
-        if(accountManage.getCurrentOwner()!=null){
-            if(accountManage.getCurrentOwner().getPassword().equals(oldPassField.getText())){
-                if(newPassField.getText().equals(newCfPassField.getText())){
-                    confirmChangePassController.setNewPassword(newPassField.getText());
-                    stage.showAndWait();}
-                else errorLabel.setText("New password didn't match.");
-            }
-            else errorLabel.setText("Password didn't match old password.");
+            if(accountManage.getCurrentOwner()!=null){
+                if(accountManage.getCurrentOwner().getPassword().equals(oldPassField.getText())){
+                    if(newPassField.getText().equals(newCfPassField.getText())){
+                        confirmChangePassController.setNewPassword(newPassField.getText());
+                        stage.showAndWait();}
+                    else errorLabel.setText("New password didn't match.");
+                }
+                else errorLabel.setText("Password didn't match old password.");
         }
         else if(accountManage.getCurrentStaff().getPassword().equals(oldPassField.getText())){
             if(newPassField.getText().equals(newCfPassField.getText())){
@@ -80,9 +82,6 @@ public class ChangePasswordController {
         else errorLabel.setText("Password didn't match old password.");
         }
         else errorLabel.setText("Some fields are empty.");
-
-
-
     }
 
     public void setAccountManage(AccountManagement accountManage) {

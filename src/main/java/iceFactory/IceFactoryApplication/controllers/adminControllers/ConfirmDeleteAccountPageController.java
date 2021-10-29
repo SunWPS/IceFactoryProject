@@ -11,11 +11,14 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ConfirmDeleteAccountPageController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private Staff selectedStaff;
+
     @FXML Button yesBtn,noBtn;
     @FXML Label accountNameLabel;
+
 
     @FXML public  void initialize()  {
 

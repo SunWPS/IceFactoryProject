@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 public class DeliveredController {
     private AccountManagement accountManage;
@@ -29,10 +30,12 @@ public class DeliveredController {
     private CustomerOrder selectedCustomerOrder;
     ObservableList<CustomerOrder> customerOrdersData;
 
-    @FXML private TableView orderListTable;
-    @FXML private TableColumn timeColumn, orderIdColumn, customerColumn, customerTypeColumn, phoneColumn, addressColumn;
+    @FXML private TableView<CustomerOrder> orderListTable;
+    @FXML private TableColumn<CustomerOrder, String> timeColumn, customerColumn, customerTypeColumn, phoneColumn, addressColumn;
+    @FXML private TableColumn<CustomerOrder, UUID> orderIdColumn;
     @FXML private Button deliveryBtn;
     @FXML private Label orderIdLaBel;
+
 
     @FXML public void initialize(){
         Platform.runLater(new Runnable() {
@@ -75,6 +78,7 @@ public class DeliveredController {
         deliveryBtn.setDisable(true);
 
     }
+
     private void showCustomerOrder(){
 
         List<CustomerOrder> customerOrderList = service.getCustomerOrderAll();

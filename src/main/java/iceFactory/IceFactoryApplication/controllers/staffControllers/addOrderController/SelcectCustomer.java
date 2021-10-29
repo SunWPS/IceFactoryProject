@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class SelcectCustomer {
 
@@ -32,12 +33,12 @@ public class SelcectCustomer {
     ObservableList<Customer> customersData;
     FilteredList<Customer> customersFilteredList;
 
-    @FXML private TableView customerTable;
-    @FXML private TableColumn customerId;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn typeColumn;
-    @FXML private TableColumn phoneColumn;
-    @FXML private TableColumn addressColumn;
+    @FXML private TableView<Customer> customerTable;
+    @FXML private TableColumn<Customer, UUID> customerId;
+    @FXML private TableColumn<Customer, String> nameColumn;
+    @FXML private TableColumn<Customer, String> typeColumn;
+    @FXML private TableColumn<Customer, String> phoneColumn;
+    @FXML private TableColumn<Customer, String> addressColumn;
     @FXML private Button selectBtn;
     @FXML private TextField nameSearch;
 
@@ -99,6 +100,7 @@ public class SelcectCustomer {
         addCustomerController.setService(service);
         stage.show();
     }
+
     @FXML
     public void handleSelectBtnOnAction(ActionEvent event) throws IOException{
         Button b = (Button) event.getSource();

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 
 public class EditAccountController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private Staff staff;
@@ -23,6 +24,7 @@ public class EditAccountController {
     @FXML private TextField staffFnameTextField, staffLnameTextField, staffPhoneTextField;
     @FXML private TextArea staffAddressTextArea;
     @FXML private Button submitBtn;
+
 
     @FXML public void initialize() {
         Platform.runLater(new Runnable() {
@@ -52,7 +54,6 @@ public class EditAccountController {
             stage.close();
         }
     }
-
 
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;

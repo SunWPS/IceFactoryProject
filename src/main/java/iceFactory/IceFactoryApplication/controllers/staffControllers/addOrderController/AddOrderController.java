@@ -19,31 +19,29 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 public class AddOrderController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private OrderItem selectedOrderItem;
     private ArrayList<OrderItem> orderItemArrayList ;
     private Customer selectedCustomer;
+
     @FXML private Button deleteBtn;
     @FXML private ComboBox<String> productComboBox;
     @FXML private TextField quantityTextField;
-    @FXML private TableView productTable;
-    @FXML private TableColumn quantityColumn;
-    @FXML private TableColumn productColumn;
+    @FXML private TableView<OrderItem> productTable;
+    @FXML private TableColumn<OrderItem, Integer> quantityColumn;
+    @FXML private TableColumn<OrderItem, String > productColumn;
     @FXML private Label addErrorLabel,submitErrorLabel;
     @FXML private Label customerId;
     @FXML private Label customerName;
 
 
-
-    //set up comboBox
     public void setSelectedCustomer(Customer selectedCustomer){
         this.selectedCustomer = selectedCustomer;
     }
@@ -55,6 +53,7 @@ public class AddOrderController {
                 orderItemArrayList = new ArrayList<>();
             }
         });
+
         productTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 deleteBtn.setDisable(false);
@@ -63,17 +62,6 @@ public class AddOrderController {
             }
         });
     }
-
-    public void setUpCustomerLabel(){
-            customerId.setText(selectedCustomer.getCustomerId().toString());
-            customerName.setText(selectedCustomer.getName());
-    }
-
-    public void setUpComboBox(){
-        productComboBox.getItems().addAll("น้ำแข็งหลอดเล็ก", "น้ำแข็งหลอดใหญ่", "น้ำแข็งป่น", "น้ำแข็งแพ็ค");
-        productComboBox.setValue("น้ำแข็งหลอดเล็ก");
-    }
-
 
     @FXML
     public void handleBackBtnOnAction(ActionEvent event) throws IOException {
@@ -140,8 +128,6 @@ public class AddOrderController {
                     }
                     productTable.refresh();
 
-
-
             } catch (IllegalArgumentException e) {
                 addErrorLabel.setText("Please add quantity");
             }
@@ -152,40 +138,56 @@ public class AddOrderController {
         if (selectedCustomer == null ){
             submitErrorLabel.setText("Please select customer first.");
         }
-        else if(orderItemArrayList.isEmpty()){submitErrorLabel.setText("Please select product first.");}
+        else if(orderItemArrayList.isEmpty()){
+            submitErrorLabel.setText("Please select product first.");
+        }
         else{
-        CustomerOrder customerOrder = new CustomerOrder();
-        customerOrder.setCustomer(selectedCustomer);
-        customerOrder.setStaff(accountManage.getCurrentStaff());
-        customerOrder.timeStamp();
-        customerOrder = service.addCustomerOrder(customerOrder);
+            CustomerOrder customerOrder = new CustomerOrder();
+            customerOrder.setCustomer(selectedCustomer);
+            customerOrder.setStaff(accountManage.getCurrentStaff());
+            customerOrder.timeStamp();
+            customerOrder = service.addCustomerOrder(customerOrder);
             for(OrderItem i : orderItemArrayList){
                 i.setCustomerOrder(customerOrder);
                 i.setPrice();
                 service.addOrderItem(i);
-                }
+            }
 
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
-        stage.setScene(new Scene(loader.load(), 487, 243));
-        stage.setTitle("Add order finished");
-        stage.centerOnScreen();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setResizable(false);
-        stage.showAndWait();
-        productTable.getItems().clear();
-        orderItemArrayList.clear();
-        quantityTextField.setText("");
-        customerId.setText("");
-        customerName.setText("");
-        selectedCustomer=null;}
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
+            stage.setScene(new Scene(loader.load(), 487, 243));
+            stage.setTitle("Add order finished");
+            stage.centerOnScreen();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.showAndWait();
+            productTable.getItems().clear();
+            orderItemArrayList.clear();
+            quantityTextField.setText("");
+            customerId.setText("");
+            customerName.setText("");
+            selectedCustomer=null;
+        }
     }
+
     @FXML public void handleDeleteBtnOnAction(ActionEvent event){
         orderItemArrayList.remove(selectedOrderItem);
         productTable.getItems().remove(selectedOrderItem);
 
     }
 
+    private void setUpCustomerLabel(){
+        customerId.setText(selectedCustomer.getCustomerId().toString());
+        customerName.setText(selectedCustomer.getName());
+    }
+
+    private void setUpComboBox(){
+        List<Product> productList = service.getProductAll();
+        for(Product product: productList){
+            productComboBox.getItems().add(product.getPName());
+        }
+        productComboBox.setValue(productList.get(0).getPName());
+    }
 
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;

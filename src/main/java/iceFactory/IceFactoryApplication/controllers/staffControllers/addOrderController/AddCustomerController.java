@@ -19,25 +19,17 @@ import java.util.List;
 import java.util.UUID;
 
 public class AddCustomerController {
+
     private IceFactoryAPIService service;
+
     @FXML private Button backBtn;
     @FXML private TextField nameTextField;
     @FXML private TextField phoneTextField;
     @FXML private TextArea addressTextArea;
     @FXML private Label errorLabel;
-    @FXML private ComboBox typeComboBox;
+    @FXML private ComboBox<String> typeComboBox;
 
-    public void setService(IceFactoryAPIService service) {
-        this.service = service;
-    }
 
-    public void setupBackBtn(){
-        backBtn.setVisible(false);
-    }
-    public void setUpCustomerTypeComboBox(){
-        typeComboBox.getItems().addAll("pick up", "delivery");
-        typeComboBox.setValue("pick up");
-    }
     @FXML public  void initialize()  {
 
         Platform.runLater(new Runnable() {
@@ -47,9 +39,8 @@ public class AddCustomerController {
                 setUpCustomerTypeComboBox();
             }
         });
-
-
     }
+
     @FXML
     public void handleBackBtnOnAction(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();
@@ -61,6 +52,7 @@ public class AddCustomerController {
         selcectCustomer.setService(service);
         stage.show();
     }
+
     @FXML
     public void handleSubmitBtnOnAction(ActionEvent event) throws IOException{
         List<Customer> customerList = service.getCustomerAll();
@@ -95,6 +87,18 @@ public class AddCustomerController {
         addressTextArea.setText("");
     }
 
+    private void setUpCustomerTypeComboBox(){
+        typeComboBox.getItems().addAll("pick up", "delivery");
+        typeComboBox.setValue("pick up");
+    }
+
+    public void setupBackBtn(){
+        backBtn.setVisible(false);
+    }
+
+    public void setService(IceFactoryAPIService service) {
+        this.service = service;
+    }
 
 
 

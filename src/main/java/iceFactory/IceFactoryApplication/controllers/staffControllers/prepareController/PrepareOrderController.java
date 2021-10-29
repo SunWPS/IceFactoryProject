@@ -1,7 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController;
 
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
-import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.model.OrderItem;
 import iceFactory.IceFactoryApplication.model.Product;
@@ -10,7 +9,6 @@ import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,33 +23,34 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.SortedSet;
+import java.util.*;
 
 public class PrepareOrderController {
+
     private AccountManagement accountManage;
     private IceFactoryAPIService service;
     private CustomerOrder selectedCustomerOrder;
     List<CustomerOrder> customerOrderList;
     ObservableList<Product> productsData;
     ObservableList<CustomerOrder> customerOrdersData;
-    @FXML private Label orderIdLabel;
 
+    @FXML private Label orderIdLabel, needMoreLabel;
     @FXML private Button prepareFinishBtn;
-    @FXML private TableView orderListTable, stockTable, orderProductTable;
+    @FXML private TableView<CustomerOrder> orderListTable;
+    @FXML private TableView<Product> stockTable;
+    @FXML private TableView<OrderItem> orderProductTable;
 
     // oderListTable
-    @FXML private TableColumn timeColumn, orderIdColumn, customerColumn, customerTypeColumn;
-
+    @FXML private TableColumn<CustomerOrder, String> timeColumn, customerColumn, customerTypeColumn;
+    @FXML private TableColumn<CustomerOrder, UUID> orderIdColumn;
     // stockTable
-    @FXML private TableColumn stockProductColumn, stockQuantityColumn;
+    @FXML private TableColumn<Product, String> stockProductColumn;
+    @FXML private TableColumn<Product, Integer> stockQuantityColumn;
 
     //orderProductTable
-    @FXML private TableColumn productColumn, quantityColumn, missColumn;
+    @FXML private TableColumn<CustomerOrder, String> productColumn;
+    @FXML private TableColumn<CustomerOrder, Integer> quantityColumn, missColumn;
 
-    @FXML private Label needMoreLabel;
 
     @FXML public void initialize(){
         Platform.runLater(new Runnable() {
@@ -110,7 +109,7 @@ public class PrepareOrderController {
         }
         showOrderProductTable();}
         catch (NullPointerException e){
-            
+            //
         }
     }
 
@@ -118,8 +117,8 @@ public class PrepareOrderController {
         try{
             selectedCustomerOrder.PrepareOrder();
             service.updateCustomerOrder(selectedCustomerOrder);
-        for(OrderItem i : selectedCustomerOrder.getOrderItemList())
-            service.updateProduct(i.getProduct());
+            for(OrderItem i : selectedCustomerOrder.getOrderItemList())
+                service.updateProduct(i.getProduct());
         }
         catch (IllegalArgumentException e){
             needMoreLabel.setText("Need More Item");
@@ -131,7 +130,6 @@ public class PrepareOrderController {
         showProduct();
         orderIdLabel.setText("");
         orderProductTable.getItems().clear();
-
     }
 
 

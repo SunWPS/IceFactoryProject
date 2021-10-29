@@ -1,6 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController;
 
-import iceFactory.IceFactoryApplication.model.CustomerOrder;
+
 import iceFactory.IceFactoryApplication.model.Product;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
@@ -18,28 +18,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateStockController {
+
     private IceFactoryAPIService service;
     private ArrayList<Product> currentAdd;
     private Product selectedProduct;
-    @FXML private Button addBtn;
-    @FXML private Button submitBtn;
+
     @FXML private Button deleteBtn;
-    @FXML private ComboBox productComboBox;
+    @FXML private ComboBox<String> productComboBox;
     @FXML private TextField quantityTextField;
     @FXML private Label errorLabel;
-    @FXML private TableView  addTable;
-    @FXML private TableColumn productColumn;
-    @FXML private TableColumn quantityColumn;
+    @FXML private TableView<Product>  addTable;
+    @FXML private TableColumn<Product, String> productColumn;
+    @FXML private TableColumn<Product, Integer> quantityColumn;
 
-    public void setService(IceFactoryAPIService service) {
-        this.service = service;
-    }
 
-    public void setUpComboBox(){
-
-        productComboBox.getItems().addAll("น้ำแข็งหลอดเล็ก", "น้ำแข็งหลอดใหญ่", "น้ำแข็งป่น", "น้ำแข็งแพ็ค");
-        productComboBox.setValue("น้ำแข็งหลอดเล็ก");
-    }
     @FXML public void initialize(){
         Platform.runLater(new Runnable() {
             @Override
@@ -56,9 +48,10 @@ public class UpdateStockController {
             }
         });
     }
+
     @FXML public void handleAddBtnOnAction(ActionEvent event){
         try {
-            Product product = new Product(); //fake object for show in table
+            Product product = new Product();
             product.setPName((String) productComboBox.getValue());
             if(Integer.parseInt(quantityTextField.getText()) < 0){
                 errorLabel.setText("Invalid Quantity");
@@ -91,15 +84,13 @@ public class UpdateStockController {
                 addTable.getItems().add(product);
                 currentAdd.add(product);
                 errorLabel.setText("");
-
             }
-
         }
         catch (NumberFormatException e){
             errorLabel.setText("Invalid Quantity");
         }
-
     }
+
     @FXML public void handleSubmitBtnOnAction(ActionEvent event) throws IOException {
         for(Product i :currentAdd){
             Product stock = service.getProductByPName(i.getPName());
@@ -124,10 +115,22 @@ public class UpdateStockController {
         addTable.getItems().clear();
         errorLabel.setText("");
     }
+
     @FXML public void handleDeleteBtnOnAction(ActionEvent event){
         currentAdd.remove(selectedProduct);
         addTable.getItems().remove(selectedProduct);
+    }
 
+    private void setUpComboBox(){
+        List<Product> productList = service.getProductAll();
+        for(Product product: productList){
+            productComboBox.getItems().add(product.getPName());
+        }
+        productComboBox.setValue(productList.get(0).getPName());
+    }
+
+    public void setService(IceFactoryAPIService service) {
+        this.service = service;
     }
 
 }
