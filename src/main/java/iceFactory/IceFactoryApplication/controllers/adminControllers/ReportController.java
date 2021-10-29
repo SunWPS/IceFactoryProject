@@ -48,6 +48,7 @@ public class ReportController {
             @Override
             public void run() {
                 orderList = service.getCustomerOrderAll();
+                date = "";
             }
         });
     }
@@ -88,32 +89,37 @@ public class ReportController {
             dTotalLabel.setText("" + dTotal);
             pTotalLabel.setText("" + pTotal);
             sTotalLabel.setText("" + sTotal);
+            errorLabel.setText("");
 
         }catch (NullPointerException e) {
-            errorLabel.setText("please select date");
+            errorLabel.setText("กรุณาเลือกวันที่");
         }
     }
 
     @FXML
     public void handleSaveBtnOnAction(ActionEvent event) throws IOException {
-        Button b = (Button) event.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
-        try {
-            CreateReport.createReport(deliveryItems, pickupItems, summaryItems, dTotal, pTotal, sTotal, date, stage);
-
-            Stage stage2 = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
-            stage2.setScene(new Scene(loader.load(), 487, 243));
-            stage2.setTitle("Save Report Finished");
-            stage2.centerOnScreen();
-            stage2.initModality(Modality.APPLICATION_MODAL);
-            stage2.setResizable(false);
-            FreePopupController freePopupController = loader.getController();
-            freePopupController.setShowText("Save รายงาน เสร็จสิ้น");
-            stage2.showAndWait();
-
-        } catch (Exception e){
-            //
+        if (!date.equals("")){
+            Button b = (Button) event.getSource();
+            Stage stage = (Stage) b.getScene().getWindow();
+            try {
+                CreateReport.createReport(deliveryItems, pickupItems, summaryItems, dTotal, pTotal, sTotal, date, stage);
+    
+                Stage stage2 = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
+                stage2.setScene(new Scene(loader.load(), 487, 243));
+                stage2.setTitle("Save Report Finished");
+                stage2.centerOnScreen();
+                stage2.initModality(Modality.APPLICATION_MODAL);
+                stage2.setResizable(false);
+                FreePopupController freePopupController = loader.getController();
+                freePopupController.setShowText("Save รายงาน เสร็จสิ้น");
+                stage2.showAndWait();
+    
+            } catch (Exception e){
+                //
+            }
+        } else {
+            errorLabel.setText("กรุณาเลือกวันที่");
         }
     }
 

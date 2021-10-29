@@ -1,5 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.deliveredController;
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FinishPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
@@ -16,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -74,8 +77,20 @@ public class DeliveredController {
         service.updateCustomerOrder(selectedCustomerOrder);
         showCustomerOrder();
         orderIdLaBel.setText("");
-        selectedCustomerOrder= null;
+
         deliveryBtn.setDisable(true);
+        Stage stage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/finish_popup.fxml"));
+        stage.setScene(new Scene(loader.load(), 487, 243));
+        stage.setTitle("Delivered Finished");
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        FinishPopupController finishPopupController = loader.getController();
+        finishPopupController.setOrderId(selectedCustomerOrder.getOrderId().toString());
+        stage.showAndWait();
+        selectedCustomerOrder= null;
 
     }
 

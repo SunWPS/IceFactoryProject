@@ -43,7 +43,6 @@ public class ConfirmDeleteAccountPageController {
     }
 
 
-
     public void setAccountManage(AccountManagement accountManage) {
         this.accountManage = accountManage;
     }

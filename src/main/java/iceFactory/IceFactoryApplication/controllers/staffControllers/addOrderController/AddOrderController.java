@@ -106,13 +106,13 @@ public class AddOrderController {
                     orderItem.setProduct(service.getProductByPName(pName));
                     boolean check = true;
                     if(Integer.parseInt(quantity) > 200){
-                        addErrorLabel.setText("Order quantity is too much!");
+                        addErrorLabel.setText("จำนวสินค้ามากเกินไป");
                         return;
                     }
                     for(OrderItem i : orderItemArrayList){
                         if(i.getPName().equals(pName)){
                             if(i.getOrderQuantity() + Integer.parseInt(quantity) > 200){
-                                addErrorLabel.setText("Order quantity is too much!");
+                                addErrorLabel.setText("จำนวสินค้ามากเกินไป");
                                 return;
                             }
                                 i.addOrderQuantity(Integer.parseInt(quantity));
@@ -130,17 +130,17 @@ public class AddOrderController {
                     productTable.refresh();
 
             } catch (IllegalArgumentException e) {
-                addErrorLabel.setText("Please add quantity");
+                addErrorLabel.setText("กรุณากรอกจำนวนสินค้า");
             }
         }
 
 
     @FXML public void handleSubmitBtnOnAction(ActionEvent event)  throws IOException{
         if (selectedCustomer == null ){
-            submitErrorLabel.setText("Please select customer first.");
+            submitErrorLabel.setText("กรุณาเลือกลุกค้า");
         }
         else if(orderItemArrayList.isEmpty()){
-            submitErrorLabel.setText("Please select product first.");
+            submitErrorLabel.setText("กรุณาเพิ่มสินค้า");
         }
         else{
             CustomerOrder customerOrder = new CustomerOrder();
@@ -164,6 +164,7 @@ public class AddOrderController {
             FreePopupController freePopupController = loader.getController();
             freePopupController.setShowText("เพิ่ม order เสร็จสิ้น");
             stage.showAndWait();
+
             productTable.getItems().clear();
             orderItemArrayList.clear();
             quantityTextField.setText("");

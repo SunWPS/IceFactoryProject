@@ -68,20 +68,25 @@ public class ChangePasswordController {
                     if(newPassField.getText().equals(newCfPassField.getText())){
                         confirmChangePassController.setNewPassword(newPassField.getText());
                         stage.showAndWait();}
-                    else errorLabel.setText("New password didn't match.");
+                    else errorLabel.setText("Password ใหม่ไม่ตรงกัน");
                 }
-                else errorLabel.setText("Password didn't match old password.");
+                else errorLabel.setText("กรอก Password ปัจจุบันไม่ถูกต้อง");
         }
         else if(accountManage.getCurrentStaff().getPassword().equals(oldPassField.getText())){
             if(newPassField.getText().equals(newCfPassField.getText())){
                 confirmChangePassController.setNewPassword(newPassField.getText());
                 stage.showAndWait();
+                errorLabel.setText("");
+                oldPassField.setText("");
+                newPassField.setText("");
+                newCfPassField.setText("");
+
             }
-            else errorLabel.setText("New password didn't match.");
+            else errorLabel.setText("Password ใหม่ไม่ตรงกัน");
         }
-        else errorLabel.setText("Password didn't match old password.");
+        else errorLabel.setText("กรอก Password ปัจจุบันไม่ถูกต้อง");
         }
-        else errorLabel.setText("Some fields are empty.");
+        else errorLabel.setText("กรอกข้อมูลไม่ครบ");
     }
 
     public void setAccountManage(AccountManagement accountManage) {

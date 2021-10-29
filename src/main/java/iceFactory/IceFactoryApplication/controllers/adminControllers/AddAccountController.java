@@ -1,11 +1,18 @@
 package iceFactory.IceFactoryApplication.controllers.adminControllers;
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.model.Staff;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AddAccountController {
 
@@ -27,13 +34,27 @@ public class AddAccountController {
                         staffAddressTextArea.getText());
                 service.addStaff(newStaff);
                 accountManage.getStaffMap().put(newStaff.getUsername(),newStaff);
+
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
+                stage.setScene(new Scene(loader.load(), 487, 243));
+                stage.setTitle("Add Staff Account finished");
+                stage.centerOnScreen();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(false);
+                FreePopupController freePopupController = loader.getController();
+                freePopupController.setShowText("เพิ่ม account พนักงานเสร็จสิ้น");
+                stage.showAndWait();
+
                 clearTextField();
             } catch(IllegalArgumentException e) {
                 addAccountErrorLabel.setText(e.getMessage());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        else addAccountErrorLabel.setText("Password didn't match.");}
-        else addAccountErrorLabel.setText("Some fields are empty.");
+        else addAccountErrorLabel.setText("Password ไม่ตรงกัน");}
+        else addAccountErrorLabel.setText("กรอกข้อมูลไม่ครบ");
 
     }
 

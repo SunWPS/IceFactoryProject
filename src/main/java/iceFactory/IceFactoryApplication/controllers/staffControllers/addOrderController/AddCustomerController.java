@@ -37,7 +37,7 @@ public class AddCustomerController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                errorLabel.setDisable(true);
+                errorLabel.setText("");
                 setUpCustomerTypeComboBox();
             }
         });
@@ -57,6 +57,11 @@ public class AddCustomerController {
 
     @FXML
     public void handleSubmitBtnOnAction(ActionEvent event) throws IOException{
+
+        if(nameTextField.getText().trim().equals("") || phoneTextField.getText().trim().equals("") || addressTextArea.getText().trim().equals("")){
+            errorLabel.setText("Please fill all data");
+            return;
+        }
         List<Customer> customerList = service.getCustomerAll();
         Customer customer = new Customer();
         UUID customerId = UUID.randomUUID();
@@ -64,18 +69,19 @@ public class AddCustomerController {
         //check duplicate name
         for(Customer i : customerList){
             if(i.getName().equalsIgnoreCase(nameTextField.getText())){
-                errorLabel.setText("This name is already used.");
-                break;
+                errorLabel.setText("ชื่อนี้มีในระบบแล้ว");
+                return;
             }
         }
 
         customer.setPhoneNumber(phoneTextField.getText());
-        if(!errorLabel.getText().equals("This name is already used.")){
+        if(!errorLabel.getText().equals("ชื่อนี้มีในระบบแล้ว")){
             customer.setName(nameTextField.getText());
         }
         customer.setType((String) typeComboBox.getValue());
         customer.setAddress(addressTextArea.getText());
         service.addCustomer(customer);
+
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
         stage.setScene(new Scene(loader.load(), 487, 243));
@@ -86,6 +92,7 @@ public class AddCustomerController {
         FreePopupController freePopupController = loader.getController();
         freePopupController.setShowText("เพิ่มลูกค้าเสร็จสิ้น");
         stage.showAndWait();
+        errorLabel.setText("");
         nameTextField.setText("");
         phoneTextField.setText("");
         addressTextArea.setText("");

@@ -1,17 +1,22 @@
 package iceFactory.IceFactoryApplication.controllers.adminControllers;
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.model.Staff;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
 
 public class EditAccountController {
@@ -41,13 +46,29 @@ public class EditAccountController {
     @FXML public void handleSubmitBtnOnAction(ActionEvent event){
         if (staffFnameTextField.getText().equals("") || staffLnameTextField.getText().equals("") ||
             staffPhoneTextField.getText().equals("") || staffAddressTextArea.getText().equals("")){
-            editAccountErrorLabel.setText("Some fields are empty.");
+            editAccountErrorLabel.setText("กรอกข้อมูลไม่ครบ");
         } else {
             staff.setFirstName(staffFnameTextField.getText());
             staff.setLastName(staffLnameTextField.getText());
             staff.setPhoneNumber(staffPhoneTextField.getText());
             staff.setAddress(staffAddressTextArea.getText());
             service.updateStaff(staff);
+
+            Stage stage2 = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
+            try {
+                stage2.setScene(new Scene(loader.load(), 487, 243));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage2.setTitle("Edit Staff Finished");
+            stage2.centerOnScreen();
+            stage2.initModality(Modality.APPLICATION_MODAL);
+            stage2.setResizable(false);
+            FreePopupController freePopupController = loader.getController();
+            freePopupController.setShowText("แก้ไข account พนักงานเสร็จสิ้น");
+            stage2.showAndWait();
+
             accountManage.getStaffMap().remove(staff.getUsername());
             accountManage.getStaffMap().put(staff.getUsername(), staff);
             Stage stage = (Stage) submitBtn.getScene().getWindow();

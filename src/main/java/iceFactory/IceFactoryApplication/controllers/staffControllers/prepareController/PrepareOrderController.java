@@ -1,5 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController;
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FinishPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.model.OrderItem;
@@ -119,9 +121,20 @@ public class PrepareOrderController {
             service.updateCustomerOrder(selectedCustomerOrder);
             for(OrderItem i : selectedCustomerOrder.getOrderItemList())
                 service.updateProduct(i.getProduct());
+
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
+            stage.setScene(new Scene(loader.load(), 487, 243));
+            stage.setTitle("Prepare Order Finished");
+            stage.centerOnScreen();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            FreePopupController freePopupController = loader.getController();
+            freePopupController.setShowText("จัดเตรียมสินค้าเสร็จสิ้น");
+            stage.showAndWait();
         }
         catch (IllegalArgumentException e){
-            needMoreLabel.setText("Need More Item");
+            needMoreLabel.setText("สินค้าในคลังไม่เพียงพอ");
         }
         finally {
             selectedCustomerOrder = null;

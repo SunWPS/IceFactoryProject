@@ -12,7 +12,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="orderId" layoutX="50.0" layoutY="78.0" text="12345678901234567890123456789012345">
+      <Label fx:id="orderIdLabel" layoutX="50.0" layoutY="78.0" text="">
          <font>
             <Font size="20.0" />
          </font>
@@ -22,7 +22,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="okBtn" layoutX="200.0" layoutY="183.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="greenBtn" stylesheets="@../../StyleSheet/style.css" text="OK" textFill="WHITE">
+      <Button fx:id="okBtn" layoutX="200.0" layoutY="183.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" styleClass="greenBtn" stylesheets="@../../StyleSheet/style.css" text="OK" textFill="WHITE" onAction="#handleOkBtnOnAction">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

@@ -55,11 +55,11 @@ public class UpdateStockController {
             Product product = new Product();
             product.setPName((String) productComboBox.getValue());
             if(Integer.parseInt(quantityTextField.getText()) < 0){
-                errorLabel.setText("Invalid Quantity");
+                errorLabel.setText("จำนวนสินค้าไม่ถูกต้อง");
                 return;
             }
             if(Integer.parseInt(quantityTextField.getText()) > 200){
-                errorLabel.setText("Too much!!");
+                errorLabel.setText("จำนวสินค้ามากเกินไป");
                 return;
             }
 
@@ -67,7 +67,7 @@ public class UpdateStockController {
             for(Product i : currentAdd){
                 if(i.getPName().equals( product.getPName())) {
                     if (i.getQuantity() + Integer.parseInt(quantityTextField.getText()) > 200) {
-                        errorLabel.setText("Too much!!");
+                        errorLabel.setText("จำนวสินค้ามากเกินไป");
                         return;
                     }
                     i.increaseStock(Integer.parseInt(quantityTextField.getText()));
@@ -88,7 +88,7 @@ public class UpdateStockController {
             }
         }
         catch (NumberFormatException e){
-            errorLabel.setText("Invalid Quantity");
+            errorLabel.setText("จำนวนสินค้าไม่ถูกต้อง");
         }
     }
 
@@ -99,7 +99,7 @@ public class UpdateStockController {
             service.updateProduct(stock);
         }
         if(currentAdd.isEmpty()){
-            errorLabel.setText("add some product!!");
+            errorLabel.setText("กรุณาระบุสินค้าที่ผลิตเพิ่ม");
             return;
         }
 
