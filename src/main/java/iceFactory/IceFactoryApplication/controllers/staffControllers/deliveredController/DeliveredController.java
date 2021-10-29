@@ -72,6 +72,7 @@ public class DeliveredController {
         showCustomerOrder();
         orderIdLaBel.setText("");
         selectedCustomerOrder= null;
+        deliveryBtn.setDisable(true);
 
     }
     private void showCustomerOrder(){

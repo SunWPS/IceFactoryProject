@@ -45,7 +45,6 @@ public class UpdateStockController {
             @Override
             public void run() {
                 setUpComboBox();
-                errorLabel.setVisible(false);
                 currentAdd = new ArrayList<>();
             }
         });
@@ -65,12 +64,35 @@ public class UpdateStockController {
                 errorLabel.setText("Invalid Quantity");
                 return;
             }
+            if(Integer.parseInt(quantityTextField.getText()) > 200){
+                errorLabel.setText("Too much!!");
+                return;
+            }
+
+            boolean check  = true;
+            for(Product i : currentAdd){
+                if(i.getPName().equals( product.getPName())) {
+                    if (i.getQuantity() + Integer.parseInt(quantityTextField.getText()) > 200) {
+                        errorLabel.setText("Too much!!");
+                        return;
+                    }
+                    i.increaseStock(Integer.parseInt(quantityTextField.getText()));
+                    errorLabel.setText("");
+                    addTable.refresh();
+                    check = false;
+                }
+
+            }
+            if(check) {
             product.increaseStock(Integer.parseInt(quantityTextField.getText()));
             productColumn.setCellValueFactory(new PropertyValueFactory<>("pName"));
             quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-            addTable.getItems().add(product);
-            currentAdd.add(product);
-            errorLabel.setVisible(false);
+
+                addTable.getItems().add(product);
+                currentAdd.add(product);
+                errorLabel.setText("");
+
+            }
 
         }
         catch (NumberFormatException e){
@@ -84,6 +106,10 @@ public class UpdateStockController {
             stock.increaseStock(i.getQuantity());
             service.updateProduct(stock);
         }
+        if(currentAdd.isEmpty()){
+            errorLabel.setText("add some product!!");
+            return;
+        }
 
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
@@ -93,6 +119,10 @@ public class UpdateStockController {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.showAndWait();
+        productComboBox.setValue("น้ำแข็งหลอดเล็ก");
+        quantityTextField.setText("");
+        addTable.getItems().clear();
+        errorLabel.setText("");
     }
     @FXML public void handleDeleteBtnOnAction(ActionEvent event){
         currentAdd.remove(selectedProduct);

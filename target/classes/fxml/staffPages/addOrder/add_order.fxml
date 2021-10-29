@@ -74,12 +74,12 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <Label fx:id="addErrorLabel" layoutX="168.0" layoutY="381.0" text="error" textFill="RED">
+      <Label fx:id="addErrorLabel" layoutX="168.0" layoutY="381.0" textFill="RED">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="submitErrorLabel" layoutX="744.0" layoutY="503.0" text="error" textFill="RED">
+      <Label fx:id="submitErrorLabel" layoutX="744.0" layoutY="503.0" textFill="RED">
          <font>
             <Font name="System Bold Italic" size="16.0" />
          </font>
