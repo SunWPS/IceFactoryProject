@@ -1,5 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.adminControllers;
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.model.OrderItem;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -98,6 +100,18 @@ public class ReportController {
         Stage stage = (Stage) b.getScene().getWindow();
         try {
             CreateReport.createReport(deliveryItems, pickupItems, summaryItems, dTotal, pTotal, sTotal, date, stage);
+
+            Stage stage2 = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
+            stage2.setScene(new Scene(loader.load(), 487, 243));
+            stage2.setTitle("Save Report Finished");
+            stage2.centerOnScreen();
+            stage2.initModality(Modality.APPLICATION_MODAL);
+            stage2.setResizable(false);
+            FreePopupController freePopupController = loader.getController();
+            freePopupController.setShowText("Save รายงาน เสร็จสิ้น");
+            stage2.showAndWait();
+
         } catch (Exception e){
             //
         }

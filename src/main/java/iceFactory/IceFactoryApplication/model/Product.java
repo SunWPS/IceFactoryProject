@@ -12,8 +12,7 @@ public class Product {
     private Set<OrderItem> items = new HashSet<>();
 
     public boolean checkStock(int quantity){
-        if(quantity<= this.quantity && quantity>0) return true;
-        else return false;
+        return quantity <= this.quantity && quantity > 0;
     }
 
     public void increaseStock(int quantity){
@@ -28,6 +27,7 @@ public class Product {
             this.quantity-=quantity;
         }
     }
+
     public String getPName() {
         return pName;
     }

@@ -1,4 +1,4 @@
-package iceFactory.IceFactoryApplication.controllers.adminControllers;
+package iceFactory.IceFactoryApplication.controllers.shareControllers;
 
 import iceFactory.IceFactoryApplication.model.Staff;
 import iceFactory.IceFactoryApplication.service.AccountManagement;

@@ -1,6 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.model.Bill;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
@@ -20,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,7 +46,7 @@ public class CreateBillController {
     @FXML private TableColumn<OrderItem, Integer> quantityColumn;
     @FXML private TableColumn<OrderItem, Float> priceColumn, sumColumn;
     @FXML private Button createBillBtn;
-    @FXML private Label orderLabel, nameLabel, totalLabel, typeLabel;
+    @FXML private Label orderLabel, nameLabel, totalLabel, typeLabel, errorLabel;
 
 
     @FXML public void initialize(){
@@ -55,8 +57,6 @@ public class CreateBillController {
                 showCustomerOrder();
             }
         });
-
-        createBillBtn.setDisable(true);
 
         orderListTable.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
             if(newValue != null){
@@ -70,6 +70,7 @@ public class CreateBillController {
                 showItemsTable();
                 totalPrice = getTotalPirce();
                 totalLabel.setText("" + totalPrice);
+                errorLabel.setText("");
             }
         }));
     }
@@ -88,27 +89,54 @@ public class CreateBillController {
 
     @FXML
     public void handleCreateBillOnAction(ActionEvent event) throws IOException {
-        Button b = (Button) event.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
+        if(selectedCustomerOrder != null) {
+            Button b = (Button) event.getSource();
+            Stage stage = (Stage) b.getScene().getWindow();
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        String createDate = dtf.format(now);
-        UUID billId = UUID.randomUUID();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String createDate = dtf.format(now);
+            UUID billId = UUID.randomUUID();
 
-        try {
-            CreateBill.createBill(selectedCustomerOrder, totalPrice, createDate, billId.toString(), stage);
-            Bill bill = new Bill();
-            bill.setBillId(billId);
-            bill.setCreateDate(createDate);
-            bill.setOrder(selectedCustomerOrder);
-            bill.setTotalPrice(totalPrice);
+            try {
+                List<Bill> billList = service.getBillAll();
+                boolean check = true;
+                for(Bill bill : billList){
+                    if(bill.getOrder().getOrderId().equals(selectedCustomerOrder.getOrderId())) {
+                        CreateBill.createBill(bill.getOrder(), totalPrice, createDate, bill.getBillId().toString(), stage);
+                        check = false;
+                        break;
+                    }
+                }
+                if(check) {
+                    CreateBill.createBill(selectedCustomerOrder, totalPrice, createDate, billId.toString(), stage);
+                    Bill bill = new Bill();
+                    bill.setBillId(billId);
+                    bill.setCreateDate(createDate);
+                    bill.setOrder(selectedCustomerOrder);
+                    bill.setTotalPrice(totalPrice);
 
-            service.addBill(bill);
+                    service.addBill(bill);
+                }
 
-        } catch (Exception e){
-            //
+                Stage stage2 = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
+                stage2.setScene(new Scene(loader.load(), 487, 243));
+                stage2.setTitle("Create Bill Finished");
+                stage2.centerOnScreen();
+                stage2.initModality(Modality.APPLICATION_MODAL);
+                stage2.setResizable(false);
+                FreePopupController freePopupController = loader.getController();
+                freePopupController.setShowText("สร้างบิลเป็น PDF เสร็จสิ้น");
+                stage2.showAndWait();
+
+            } catch (Exception e) {
+                //
+            }
+        } else {
+            errorLabel.setText("กรุณากดเลือก order !!!");
         }
+
     }
 
     private void showCustomerOrder(){

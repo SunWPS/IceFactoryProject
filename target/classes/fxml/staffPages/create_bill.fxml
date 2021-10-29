@@ -55,7 +55,7 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Button fx:id="createBillBtn" layoutX="979.0" layoutY="668.0" mnemonicParsing="false" onAction="#handleCreateBillOnAction" prefHeight="64.0" prefWidth="184.0" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="สร้าง Bill" textFill="WHITE">
+      <Button fx:id="createBillBtn" layoutX="1017.0" layoutY="691.0" mnemonicParsing="false" onAction="#handleCreateBillOnAction" prefHeight="26.0" prefWidth="145.0" styleClass="blueButton" stylesheets="@../../StyleSheet/style.css" text="สร้าง Bill" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -91,6 +91,11 @@
       <Label fx:id="typeLabel" layoutX="995.0" layoutY="301.0" textFill="#0b127f">
          <font>
             <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorLabel" layoutX="995.0" layoutY="655.0" prefHeight="27.0" prefWidth="202.0" textFill="RED">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
    </children>

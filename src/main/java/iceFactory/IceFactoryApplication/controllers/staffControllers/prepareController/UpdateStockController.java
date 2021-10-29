@@ -1,6 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController;
 
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.model.Product;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
@@ -103,12 +104,14 @@ public class UpdateStockController {
         }
 
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
         stage.setScene(new Scene(loader.load(), 487, 243));
-        stage.setTitle("Add product finished");
+        stage.setTitle("Update Stock Finished");
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
+        FreePopupController freePopupController = loader.getController();
+        freePopupController.setShowText("อัพเดท stock เสร็จสิ้น");
         stage.showAndWait();
         productComboBox.setValue("น้ำแข็งหลอดเล็ก");
         quantityTextField.setText("");

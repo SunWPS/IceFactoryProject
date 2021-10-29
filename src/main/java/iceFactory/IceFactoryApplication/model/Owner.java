@@ -6,8 +6,6 @@ import java.util.Set;
 
 public class Owner extends Account{
 
-    //editStock
-    //edit
     private Set<Staff> staffs = new HashSet<>();
     public Owner changePassword(String oldPass, String newPass){
         if(getPassword().equals(oldPass)){
@@ -32,9 +30,6 @@ public class Owner extends Account{
         else throw new IllegalArgumentException("Already have this account!!");
     }
 
-//    public Staff deleteStaff(HashMap<String,Staff> staffMap, String staffUsername){
-//        return(staffMap.remove(staffUsername));
-//    }
 
     public Staff editStaff (HashMap<String,Staff> staffMap, Staff staff){
         Staff editStaff = staffMap.get(staff.getUsername());
@@ -49,7 +44,6 @@ public class Owner extends Account{
         else throw new IllegalArgumentException("Argument is null!!");
 
         return editStaff;
-
     }
 
     public Set<Staff> getStaffs() {

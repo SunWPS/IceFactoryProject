@@ -17,13 +17,6 @@ public class Staff extends Account{
         return owner;
     }
 
-    //add order
-    //editOrder
-
-
-
-
-
 
     public void setOwner(Owner owner) {
         this.owner = owner;
@@ -44,10 +37,7 @@ public class Staff extends Account{
             throw new IllegalArgumentException(e.getMessage());
         }
         return null;
-        }
-
-
-
+    }
 
     public String getFirstName() {
         return firstName;

@@ -1,6 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController;
 
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 
 import java.io.IOException;
@@ -75,12 +77,14 @@ public class AddCustomerController {
         customer.setAddress(addressTextArea.getText());
         service.addCustomer(customer);
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
         stage.setScene(new Scene(loader.load(), 487, 243));
         stage.setTitle("Add customer finished");
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
+        FreePopupController freePopupController = loader.getController();
+        freePopupController.setShowText("เพิ่มลูกค้าเสร็จสิ้น");
         stage.showAndWait();
         nameTextField.setText("");
         phoneTextField.setText("");

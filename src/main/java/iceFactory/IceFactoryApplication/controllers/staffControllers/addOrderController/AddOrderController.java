@@ -1,5 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController;
 
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 
 import iceFactory.IceFactoryApplication.model.*;
@@ -154,12 +155,14 @@ public class AddOrderController {
             }
 
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/add_finished.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/free_popup.fxml"));
             stage.setScene(new Scene(loader.load(), 487, 243));
             stage.setTitle("Add order finished");
             stage.centerOnScreen();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
+            FreePopupController freePopupController = loader.getController();
+            freePopupController.setShowText("เพิ่ม order เสร็จสิ้น");
             stage.showAndWait();
             productTable.getItems().clear();
             orderItemArrayList.clear();

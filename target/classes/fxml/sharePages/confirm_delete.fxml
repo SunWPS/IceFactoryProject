@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="243.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.adminControllers.ConfirmDeleteAccountPageController">
+<AnchorPane prefHeight="243.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.shareControllers.ConfirmDeleteAccountPageController">
    <children>
       <ImageView fitHeight="245.0" fitWidth="478.0" pickOnBounds="true" preserveRatio="true">
          <image>
