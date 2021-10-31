@@ -1,6 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.deliveredController;
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.FinishPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.FinishPopup;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
@@ -86,8 +86,8 @@ public class DeliveredController {
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        FinishPopupController finishPopupController = loader.getController();
-        finishPopupController.setOrderId(selectedCustomerOrder.getOrderId().toString());
+        FinishPopup finishPopup = loader.getController();
+        finishPopup.setOrderId(selectedCustomerOrder.getOrderId().toString());
         stage.showAndWait();
         selectedCustomerOrder= null;
 

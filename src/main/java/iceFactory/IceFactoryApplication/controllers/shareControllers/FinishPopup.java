@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class FinishPopupController {
+public class FinishPopup {
 
     private String orderId;
 
