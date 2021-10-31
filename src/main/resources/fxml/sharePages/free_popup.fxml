@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="243.0" prefWidth="478.0" style="-fx-background-color: CAF0FF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController">
+<AnchorPane prefHeight="243.0" prefWidth="478.0" style="-fx-background-color: CAF0FF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController">
     <children>
         <Button fx:id="okBtn" layoutX="188.0" layoutY="154.0" mnemonicParsing="false" onAction="#handleOkBtnOnAction" prefHeight="51.0" prefWidth="102.0" styleClass="greenBtn" stylesheets="@../../StyleSheet/style.css" text="ตกลง" textFill="WHITE">
             <font>

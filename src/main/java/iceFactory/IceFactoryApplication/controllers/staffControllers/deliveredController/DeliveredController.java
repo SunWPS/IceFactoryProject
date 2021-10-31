@@ -1,7 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.deliveredController;
 
 import iceFactory.IceFactoryApplication.controllers.shareControllers.FinishPopupController;
-import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
@@ -81,7 +80,7 @@ public class DeliveredController {
         deliveryBtn.setDisable(true);
         Stage stage = new Stage();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/finish_popup.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/sharePages/main_popup.fxml"));
         stage.setScene(new Scene(loader.load(), 487, 243));
         stage.setTitle("Delivered Finished");
         stage.centerOnScreen();

@@ -79,16 +79,16 @@ public class StaffListPageControllers {
 
     @FXML void handleAddAccountBtnOnAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/add_account.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/add_staff.fxml"));
         stage.setScene(new Scene(loader.load(), 935, 587));
         stage.setTitle("Add account");
         stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        AddAccountController addAccountController = loader.getController();
-        addAccountController.setAccountManage(accountManage);
-        addAccountController.setService(service);
+        AddStaffController addStaffController = loader.getController();
+        addStaffController.setAccountManage(accountManage);
+        addStaffController.setService(service);
         stage.showAndWait();
         createStaffListTable();
     }
@@ -115,17 +115,17 @@ public class StaffListPageControllers {
     @FXML public void handleEditBtnOnAction(ActionEvent event) throws IOException {
         if(selectedStaff!=null){
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/edit_account.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/adminPages/edit_staff.fxml"));
             stage.setScene(new Scene(loader.load(), 935, 587));
             stage.setTitle("Edit account");
             stage.getIcons().add(new Image("/ImageAndIcon/etc/iceIcon.png"));
             stage.centerOnScreen();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            EditAccountController editAccountController = loader.getController();
-            editAccountController.setAccountManage(accountManage);
-            editAccountController.setService(service);
-            editAccountController.setStaff(selectedStaff);
+            EditStaffController editStaffController = loader.getController();
+            editStaffController.setAccountManage(accountManage);
+            editStaffController.setService(service);
+            editStaffController.setStaff(selectedStaff);
             stage.showAndWait();
             staffTableView.refresh();
             createStaffListTable();

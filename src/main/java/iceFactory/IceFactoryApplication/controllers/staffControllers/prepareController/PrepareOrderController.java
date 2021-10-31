@@ -1,7 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController;
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.FinishPopupController;
-import iceFactory.IceFactoryApplication.controllers.shareControllers.FreePopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
 import iceFactory.IceFactoryApplication.model.OrderItem;
@@ -129,8 +128,8 @@ public class PrepareOrderController {
             stage.centerOnScreen();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            FreePopupController freePopupController = loader.getController();
-            freePopupController.setShowText("จัดเตรียมสินค้าเสร็จสิ้น");
+            MainPopupController mainPopupController = loader.getController();
+            mainPopupController.setShowText("จัดเตรียมสินค้าเสร็จสิ้น");
             stage.showAndWait();
         }
         catch (IllegalArgumentException e){

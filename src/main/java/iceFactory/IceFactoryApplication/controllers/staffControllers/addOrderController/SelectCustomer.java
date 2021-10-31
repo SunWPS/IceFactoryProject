@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-public class SelcectCustomer {
+public class SelectCustomer {
 
     private IceFactoryAPIService service;
     private Customer selectedCustomer;
