@@ -1,7 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers;
 
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopup;
 import iceFactory.IceFactoryApplication.model.Bill;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.model.CustomerOrder;
@@ -126,8 +126,8 @@ public class CreateBillController {
                 stage2.centerOnScreen();
                 stage2.initModality(Modality.APPLICATION_MODAL);
                 stage2.setResizable(false);
-                MainPopupController mainPopupController = loader.getController();
-                mainPopupController.setShowText("สร้างบิลเป็น PDF เสร็จสิ้น");
+                MainPopup mainPopup = loader.getController();
+                mainPopup.setShowText("สร้างบิลเป็น PDF เสร็จสิ้น");
                 stage2.showAndWait();
 
             } catch (Exception e) {

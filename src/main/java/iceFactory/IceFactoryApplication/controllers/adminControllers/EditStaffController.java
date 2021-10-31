@@ -1,6 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.adminControllers;
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopup;
 import iceFactory.IceFactoryApplication.model.Staff;
 import iceFactory.IceFactoryApplication.service.AccountManagement;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
@@ -65,8 +65,8 @@ public class EditStaffController {
             stage2.centerOnScreen();
             stage2.initModality(Modality.APPLICATION_MODAL);
             stage2.setResizable(false);
-            MainPopupController mainPopupController = loader.getController();
-            mainPopupController.setShowText("แก้ไข account พนักงานเสร็จสิ้น");
+            MainPopup mainPopup = loader.getController();
+            mainPopup.setShowText("แก้ไข account พนักงานเสร็จสิ้น");
             stage2.showAndWait();
 
             accountManage.getStaffMap().remove(staff.getUsername());

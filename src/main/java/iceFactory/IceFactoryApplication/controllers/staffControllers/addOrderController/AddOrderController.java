@@ -1,6 +1,6 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController;
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopup;
 import iceFactory.IceFactoryApplication.controllers.staffControllers.StaffPageController;
 
 import iceFactory.IceFactoryApplication.model.*;
@@ -161,8 +161,8 @@ public class AddOrderController {
             stage.centerOnScreen();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            MainPopupController mainPopupController = loader.getController();
-            mainPopupController.setShowText("เพิ่ม order เสร็จสิ้น");
+            MainPopup mainPopup = loader.getController();
+            mainPopup.setShowText("เพิ่ม order เสร็จสิ้น");
             stage.showAndWait();
 
             productTable.getItems().clear();

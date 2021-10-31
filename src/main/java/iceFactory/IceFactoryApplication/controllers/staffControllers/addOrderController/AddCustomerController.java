@@ -1,7 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.addOrderController;
 
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopup;
 import iceFactory.IceFactoryApplication.model.Customer;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
@@ -88,8 +88,8 @@ public class AddCustomerController {
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        MainPopupController mainPopupController = loader.getController();
-        mainPopupController.setShowText("เพิ่มลูกค้าเสร็จสิ้น");
+        MainPopup mainPopup = loader.getController();
+        mainPopup.setShowText("เพิ่มลูกค้าเสร็จสิ้น");
         stage.showAndWait();
         errorLabel.setText("");
         nameTextField.setText("");

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainPopupController {
+public class MainPopup {
 
     private String showText;
 

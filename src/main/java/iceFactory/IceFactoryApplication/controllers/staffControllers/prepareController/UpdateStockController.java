@@ -1,7 +1,7 @@
 package iceFactory.IceFactoryApplication.controllers.staffControllers.prepareController;
 
 
-import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopupController;
+import iceFactory.IceFactoryApplication.controllers.shareControllers.MainPopup;
 import iceFactory.IceFactoryApplication.model.Product;
 import iceFactory.IceFactoryApplication.service.IceFactoryAPIService;
 import javafx.application.Platform;
@@ -110,8 +110,8 @@ public class UpdateStockController {
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
-        MainPopupController mainPopupController = loader.getController();
-        mainPopupController.setShowText("อัพเดท stock เสร็จสิ้น");
+        MainPopup mainPopup = loader.getController();
+        mainPopup.setShowText("อัพเดท stock เสร็จสิ้น");
         stage.showAndWait();
         productComboBox.setValue("น้ำแข็งหลอดเล็ก");
         quantityTextField.setText("");
