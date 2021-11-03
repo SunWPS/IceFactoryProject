@@ -72,6 +72,7 @@ public class PrepareOrderController {
                 selectedCustomerOrder =  a;
                 showOrderProductTable();
                 orderIdLabel.setText(a.getOrderId().toString());
+                needMoreLabel.setText("");
             }
         });
     }
@@ -112,6 +113,7 @@ public class PrepareOrderController {
         catch (NullPointerException e){
             //
         }
+        needMoreLabel.setText("");
     }
 
     @FXML public void handlePrepareFinishBtnOnAction(ActionEvent event)throws IOException{
