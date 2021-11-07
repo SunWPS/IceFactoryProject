@@ -5,12 +5,12 @@ Project นี้จัดทำขึ้นเพื่อช่วยเหล
 -  ดาวน์โหลด โฟลเดอร์ IceFactoryApplication
 -  ดับเบิ้ลคลิก iceFactoryApplication.jar ที่อยู่ใน โฟลเดอร์ IceFactoryApplication
 -  หากดับเบิ้ลคลิกไม่ได้ ให้รันคำสั่ง cmd โดย directory ที่ทำการรันคำสั่งต้องเป็นตำแหน่งเดียวกันกับที่เก็บ iceFactoryApplication.jar รันคำสั่ง 
--  **Owner role**         USERNAME : owner / PASSWORD : 0000
--  **Staff role**         USERNAME : Staff / PASSWORD : 0000
-
 ```
           		java -jar iceFactoryApplication.jar
 ```  
+-  **Owner role**         USERNAME : owner / PASSWORD : 0000
+-  **Staff role**         USERNAME : Staff / PASSWORD : 0000
+-  หากมีการแก้ไข API ให้มีการรันใน docker ให้เปลี่ยน uri ใน src/main/java/iceFactory/IceFactoryApplication/service/IceFactoryAPIService.java ด้วยการ comment/uncomment
 
 ## สมาชิกกลุ่ม วิชา System Analysis and Design (01418321)
 - นายพชร     ศรีสมบูรณ์โชติ  6210401295
