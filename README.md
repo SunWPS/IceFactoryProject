@@ -5,6 +5,8 @@ Project นี้จัดทำขึ้นเพื่อช่วยเหล
 -  ดาวน์โหลด โฟลเดอร์ IceFactoryApplication
 -  ดับเบิ้ลคลิก iceFactoryApplication.jar ที่อยู่ใน โฟลเดอร์ IceFactoryApplication
 -  หากดับเบิ้ลคลิกไม่ได้ ให้รันคำสั่ง cmd โดย directory ที่ทำการรันคำสั่งต้องเป็นตำแหน่งเดียวกันกับที่เก็บ iceFactoryApplication.jar รันคำสั่ง 
+-  **Owner role**         USERNAME : owner / PASSWORD : 0000
+-  **Staff role**         USERNAME : Staff / PASSWORD : 0000
 
 ```
           		java -jar iceFactoryApplication.jar
