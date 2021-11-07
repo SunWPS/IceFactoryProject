@@ -18,8 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-//@Component
-//@FxmlView("login.fxml")
+
 
 @Component
 public class LoginController {

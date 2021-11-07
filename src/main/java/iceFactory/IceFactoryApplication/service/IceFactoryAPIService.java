@@ -22,11 +22,13 @@ import java.util.UUID;
 
 public class IceFactoryAPIService {
 
-//    @Autowired
+
     private RestTemplate restTemplate ;
 
 
-    private String url="https://ice-factory-api.herokuapp.com/";
+    private String url="https://ice-factory-api.herokuapp.com/"; // using this when using API from Heroku
+
+//    private String url="http://localhost:8090/"; //using this when using API from docker
 
 
     public IceFactoryAPIService(RestTemplate restTemplate) {
