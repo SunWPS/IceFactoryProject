@@ -14,8 +14,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <out.folder>iceFactoryProjectUI</out.folder>
-        <out.filename>iceFactory</out.filename>
+        <java.version>1.8</java.version>
+        <out.folder>IceFactoryApplication</out.folder>
+        <out.filename>iceFactoryApplication</out.filename>
         <project.mainClass>iceFactory.IceFactoryApplication.Main</project.mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
