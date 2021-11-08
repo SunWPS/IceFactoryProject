@@ -2,6 +2,7 @@ package model;
 
 import iceFactory.IceFactoryApplication.model.Owner;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +20,7 @@ public class OwnerTest {
     }
 
     @Test
+    @DisplayName("Throw exception if enter wrong current password")
     void change_password_test_wrong_old_password(){
         Throwable exception = assertThrows(IllegalArgumentException.class, ()-> {
             owner.changePassword("passs", "12345");
@@ -28,5 +30,4 @@ public class OwnerTest {
 
         assertEquals(expectedMessage,actualMessage);
     }
-
 }

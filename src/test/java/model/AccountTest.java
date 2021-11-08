@@ -2,6 +2,7 @@ package model;
 
 import iceFactory.IceFactoryApplication.model.Account;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,6 +21,7 @@ public class AccountTest {
     }
 
     @Test
+    @DisplayName("Throw exception if enter wrong username or password")
     void entry_check_test(){
         Throwable exception = assertThrows(IllegalArgumentException.class, ()-> {
             account.entryCheck("acc1","2222");
